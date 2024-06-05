@@ -56,6 +56,11 @@ app.use('/api/sales', SaleRouter);
 app.use('/api/distribution', DistributionRouter);
 app.use('/api/dashboard', DashboardRouter);
 
+app.use((req, res, next) => {
+    console.log(`Request URL: ${req.url}`);
+    next();
+  });
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 
