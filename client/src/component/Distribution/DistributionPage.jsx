@@ -24,7 +24,7 @@ function DistributionPage() {
         const warehouseId = decoded.warehouse;
 
         const response = await axios.get(
-          "http://localhost:5000/api/distribution",
+          "https://inventory-management-api.vercel.app/api/distribution",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ function DistributionPage() {
     if (distributionToDelete) {
       try {
         const token = Cookies.get("Token");
-        await axios.delete(`http://localhost:5000/api/distribution/${distributionToDelete}`, {
+        await axios.delete(`https://inventory-management-api.vercel.app/api/distribution/${distributionToDelete}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDistributions(

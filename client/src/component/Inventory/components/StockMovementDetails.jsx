@@ -21,7 +21,7 @@ function StockMovementDetails() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/inventory/stock/stock-movement/${id}`,
+        `https://inventory-management-api.vercel.app/api/inventory/stock/stock-movement/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

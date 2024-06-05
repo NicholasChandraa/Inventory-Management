@@ -56,7 +56,7 @@ const StockTable = ({ stockItems, fetchInventoryItems }) => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/inventory/stock/${itemToEdit._id}`,
+        `https://inventory-management-api.vercel.app/api/inventory/stock/${itemToEdit._id}`,
         {
           noteIn: editedNote,
           statusIn: editedStatus,
@@ -92,7 +92,7 @@ const StockTable = ({ stockItems, fetchInventoryItems }) => {
     try {
       // First delete the inventory item
       await axios.delete(
-        `http://localhost:5000/api/inventory/stock/${itemToDelete._id}`,
+        `https://inventory-management-api.vercel.app/api/inventory/stock/${itemToDelete._id}`,
         headers,
       );
       console.log("Inventory item deleted successfully.");
@@ -100,7 +100,7 @@ const StockTable = ({ stockItems, fetchInventoryItems }) => {
       // Then delete the associated product if it exists
       if (itemToDelete.product && itemToDelete.product._id) {
         await axios.delete(
-          `http://localhost:5000/api/product/${itemToDelete.product._id}`,
+          `https://inventory-management-api.vercel.app/api/product/${itemToDelete.product._id}`,
           headers,
         );
         console.log("Product deleted successfully.");

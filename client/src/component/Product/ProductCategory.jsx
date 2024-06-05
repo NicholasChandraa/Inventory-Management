@@ -24,7 +24,7 @@ function ProductCategory() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/product/categories",
+        "https://inventory-management-api.vercel.app/api/product/categories",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ function ProductCategory() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/product/categories",
+        "https://inventory-management-api.vercel.app/api/product/categories",
         { name: newCategory },
         {
           headers: {
@@ -74,7 +74,7 @@ function ProductCategory() {
 
     try {
       const productResponse = await axios.get(
-        "http://localhost:5000/api/product/",
+        "https://inventory-management-api.vercel.app/api/product/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -92,7 +92,7 @@ function ProductCategory() {
       }
 
       const deleteResponse = await axios.delete(
-        `http://localhost:5000/api/product/categories/${categoryId}`,
+        `https://inventory-management-api.vercel.app/api/product/categories/${categoryId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

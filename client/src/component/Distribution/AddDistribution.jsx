@@ -58,7 +58,7 @@ function AddDistribution() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/distribution/add",
+        "https://inventory-management-api.vercel.app/api/distribution/add",
         dataToSend,
         {
           headers: {

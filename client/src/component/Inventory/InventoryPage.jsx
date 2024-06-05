@@ -36,7 +36,7 @@ function InventoryPage() {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/inventory/stock",
+        "https://inventory-management-api.vercel.app/api/inventory/stock",
         {
           headers: {
             Authorization: `Bearer ${token}`,

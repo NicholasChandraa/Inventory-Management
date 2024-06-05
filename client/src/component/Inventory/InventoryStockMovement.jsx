@@ -45,7 +45,7 @@ function InventoryStockMovement() {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/inventory/stock/stock-movements", {
+        "https://inventory-management-api.vercel.app/api/inventory/stock/stock-movements", {
             headers: {
                 Authorization: `Bearer ${token}`
             },

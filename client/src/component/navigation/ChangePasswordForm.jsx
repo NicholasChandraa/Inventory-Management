@@ -24,7 +24,7 @@ const ChangePasswordForm = () => {
           const decodedToken = jwtDecode(token);
           const userId = decodedToken.id;
 
-          const response = await axios.get(`http://localhost:5000/api/users/profile/${userId}`, {
+          const response = await axios.get(`https://inventory-management-api.vercel.app/api/users/profile/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
@@ -73,7 +73,7 @@ const ChangePasswordForm = () => {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.id;
 
-      const response = await axios.post('http://localhost:5000/api/users/profile/changePassword', {
+      const response = await axios.post('https://inventory-management-api.vercel.app/api/users/profile/changePassword', {
         userId: userId,
         oldPassword: passwords.oldPassword,
         newPassword: passwords.newPassword,

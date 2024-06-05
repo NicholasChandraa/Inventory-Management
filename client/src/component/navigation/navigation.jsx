@@ -33,7 +33,7 @@ function Navigation() {
 
     const savedProfilePic = localStorage.getItem('profilePicture');
     if(savedProfilePic){
-      setProfilePictureUrl(`http://localhost:5000${savedProfilePic}`);
+      setProfilePictureUrl(`https://inventory-management-api.vercel.app${savedProfilePic}`);
     }
 
     const fetchUserProfile = async () => {
@@ -44,7 +44,7 @@ function Navigation() {
       }
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/profile?userId=${userId}`, {
+        const response = await axios.get(`https://inventory-management-api.vercel.app/api/users/profile?userId=${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

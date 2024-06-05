@@ -33,7 +33,7 @@ function EditDistribution() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/distribution/${id}`,
+        `https://inventory-management-api.vercel.app/api/distribution/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -60,7 +60,7 @@ function EditDistribution() {
   const handleConfirmSubmit = async () => {
     const token = Cookies.get("Token");
     try {
-      await axios.put(`http://localhost:5000/api/distribution/${id}`, form, {
+      await axios.put(`https://inventory-management-api.vercel.app/api/distribution/${id}`, form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/distribution");

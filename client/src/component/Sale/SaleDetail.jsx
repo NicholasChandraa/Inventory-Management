@@ -16,7 +16,7 @@ function SaleDetail() {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/sales/${saleId}`,
+          `https://inventory-management-api.vercel.app/api/sales/${saleId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

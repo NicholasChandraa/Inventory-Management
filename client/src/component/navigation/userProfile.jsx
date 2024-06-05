@@ -24,7 +24,7 @@ function UserProfile(props) {
   useEffect(() => {
     const savedProfilePic = localStorage.getItem("profilePicture");
     if (savedProfilePic) {
-      updateProfileImage(`http://localhost:5000${savedProfilePic}`);
+      updateProfileImage(`https://inventory-management-api.vercel.app${savedProfilePic}`);
     }
 
     const token = Cookies.get("Token");
@@ -47,7 +47,7 @@ function UserProfile(props) {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users/profile/${userId}`,
+          `https://inventory-management-api.vercel.app/api/users/profile/${userId}`,
           {
             headers: { Authorization: `Bearer ${userToken}` },
           },
@@ -109,7 +109,7 @@ function UserProfile(props) {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/users/profile/updateProfile/${userId}`,
+        `https://inventory-management-api.vercel.app/api/users/profile/updateProfile/${userId}`,
         userData,
         { headers: { Authorization: `Bearer ${userToken}` } },
       );
@@ -139,7 +139,7 @@ function UserProfile(props) {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/users/profile/saveProfilePicturePath",
+        "https://inventory-management-api.vercel.app/api/users/profile/saveProfilePicturePath",
         {
           userId,
           profilePicture: filePath,
@@ -151,7 +151,7 @@ function UserProfile(props) {
         },
       );
 
-      const newProfilePicUrl = `http://localhost:5000${filePath}`;
+      const newProfilePicUrl = `https://inventory-management-api.vercel.app${filePath}`;
       localStorage.setItem("profilePicture", filePath);
       updateProfileImage(newProfilePicUrl); // Memperbarui URL gambar profil di Context
       console.log("Profile picture path updated successfully");
@@ -166,7 +166,7 @@ function UserProfile(props) {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/users/profile/updateProfilePicture",
+        "https://inventory-management-api.vercel.app/api/users/profile/updateProfilePicture",
         { userId, filePath },
         {
           headers: {
@@ -176,7 +176,7 @@ function UserProfile(props) {
       );
 
       // Perbarui gambar profil di konteks/state/toko global
-      updateProfileImage(`http://localhost:5000${filePath}`);
+      updateProfileImage(`https://inventory-management-api.vercel.app${filePath}`);
     } catch (error) {
       console.error("Kesalahan saat memperbarui gambar profil:", error);
     }

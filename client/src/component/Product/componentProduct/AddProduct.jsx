@@ -62,7 +62,7 @@ const AddProduct = () => {
   const fetchCategories = async (token) => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/product/categories",
+        "https://inventory-management-api.vercel.app/api/product/categories",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ const AddProduct = () => {
 
   const fetchData = async (token) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/product", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/product", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -144,7 +144,7 @@ const AddProduct = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/product",
+        "https://inventory-management-api.vercel.app/api/product",
         JSON.stringify(payload),
         config,
       );

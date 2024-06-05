@@ -10,7 +10,7 @@ import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://inventory-management-api.vercel.app";
 
 const NotificationIcon = () => {
   const [showNotifications, setShowNotifications] = useState(false);

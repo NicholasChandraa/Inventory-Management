@@ -25,7 +25,7 @@ function ProductPage() {
   const fetchData = async (page, limit) => {
     try {
       const token = Cookies.get("Token");
-      const response = await axios.get("http://localhost:5000/api/product", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/product", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ function ProductPage() {
     try {
       const token = Cookies.get("Token");
       const response = await axios.get(
-        "http://localhost:5000/api/product/categories",
+        "https://inventory-management-api.vercel.app/api/product/categories",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ function ProductPage() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/product/${id}`,
+        `https://inventory-management-api.vercel.app/api/product/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

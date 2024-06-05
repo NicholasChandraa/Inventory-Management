@@ -24,7 +24,7 @@ function ProfilePictureUpload({ onUploadSuccess }) {
     formData.append('profilePicture', selectedFile);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/users/profile/uploadImage', formData, {
+      const response = await axios.post('https://inventory-management-api.vercel.app/api/users/profile/uploadImage', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -32,7 +32,7 @@ function Dashboard() {
 
     async function fetchData() {
       const revenueResponse = await axios.get(
-        "http://localhost:5000/api/dashboard/revenue",
+        "https://inventory-management-api.vercel.app/api/dashboard/revenue",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ function Dashboard() {
         },
       );
       const expensesResponse = await axios.get(
-        "http://localhost:5000/api/dashboard/expenses",
+        "https://inventory-management-api.vercel.app/api/dashboard/expenses",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ function Dashboard() {
       const token = Cookies.get("Token");
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/dashboard/stats",
+          "https://inventory-management-api.vercel.app/api/dashboard/stats",
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -75,7 +75,7 @@ function Dashboard() {
     const fetchPriceComparison = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/dashboard/price-comparison",
+          "https://inventory-management-api.vercel.app/api/dashboard/price-comparison",
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -93,7 +93,7 @@ function Dashboard() {
     const fetchSalesStats = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/dashboard/sales-stats",
+          "https://inventory-management-api.vercel.app/api/dashboard/sales-stats",
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -113,7 +113,7 @@ function Dashboard() {
     const fetchDistributionStats = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/dashboard/distribution-stats",
+          "https://inventory-management-api.vercel.app/api/dashboard/distribution-stats",
           {
             headers: { Authorization: `Bearer ${token}` },
           },

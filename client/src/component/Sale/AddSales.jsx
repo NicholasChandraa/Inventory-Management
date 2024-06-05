@@ -62,7 +62,7 @@ function AddSales() {
       return;
     }
     try {
-      const response = await axios.get("http://localhost:5000/api/product", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/product", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,7 +86,7 @@ function AddSales() {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/customers", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/customers", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +106,7 @@ function AddSales() {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/customers/customer-types",
+        "https://inventory-management-api.vercel.app/api/customers/customer-types",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -143,7 +143,7 @@ function AddSales() {
       const token = Cookies.get("Token");
       try {
         const inventoryResponse = await axios.get(
-          `http://localhost:5000/api/inventory/stock/byproduct/${productId}`,
+          `https://inventory-management-api.vercel.app/api/inventory/stock/byproduct/${productId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -245,7 +245,7 @@ function AddSales() {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/sales", payload, {
+      await axios.post("https://inventory-management-api.vercel.app/api/sales", payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

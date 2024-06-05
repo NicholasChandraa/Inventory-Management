@@ -24,7 +24,7 @@ function SalesPage() {
   const fetchSales = async () => {
     const token = Cookies.get("Token");
     try {
-      const response = await axios.get("http://localhost:5000/api/sales", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/sales", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +47,7 @@ function SalesPage() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/sales/${saleId}`,
+        `https://inventory-management-api.vercel.app/api/sales/${saleId}`,
         { [statusName]: statusValue },
         {
           headers: {
@@ -115,7 +115,7 @@ function SalesPage() {
         remainingAmount,
       };
 
-      await axios.put(`http://localhost:5000/api/sales/${saleId}`, payload, {
+      await axios.put(`https://inventory-management-api.vercel.app/api/sales/${saleId}`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -159,7 +159,7 @@ function SalesPage() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/sales/${saleId}`,
+        `https://inventory-management-api.vercel.app/api/sales/${saleId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

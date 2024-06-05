@@ -42,7 +42,7 @@ function EditProduct() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/product/${id}`,
+          `https://inventory-management-api.vercel.app/api/product/${id}`,
         );
         const productData = response.data;
 
@@ -86,7 +86,7 @@ function EditProduct() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/product/${id}`,
+        `https://inventory-management-api.vercel.app/api/product/${id}`,
         dataToSubmit,
       );
       console.log(response.data);

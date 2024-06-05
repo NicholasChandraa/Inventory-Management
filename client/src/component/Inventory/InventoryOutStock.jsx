@@ -116,7 +116,7 @@ const InventoryOutStock = () => {
   const fetchStockOutData = async (token) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/inventory/stock/stock-out",
+        "https://inventory-management-api.vercel.app/api/inventory/stock/stock-out",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -131,7 +131,7 @@ const InventoryOutStock = () => {
 
   const fetchSales = async (token, warehouseId) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/sales", {
+      const response = await axios.get("https://inventory-management-api.vercel.app/api/sales", {
         headers: { Authorization: `Bearer ${token}` },
         params: { warehouse: warehouseId },
       });
@@ -219,7 +219,7 @@ const InventoryOutStock = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/sales/${saleId}`,
+        `https://inventory-management-api.vercel.app/api/sales/${saleId}`,
         {
           noteSale: editState.noteSale,
           statusSale: editState.statusSale,
