@@ -25,7 +25,7 @@ function LupaPassword() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/users/forgotPassword",
+        "https://inventory-management-api.vercel.app/api/users/forgotPassword",
         { email },
       );
       if (response.data) {

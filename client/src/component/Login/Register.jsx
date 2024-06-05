@@ -24,7 +24,7 @@ function Register() {
 
   useEffect(() => {
     const fetchWarehouses = async () => {
-      const result = await axios.get("http://localhost:5000/api/warehouses");
+      const result = await axios.get("https://inventory-management-api.vercel.app/api/warehouses");
 
       setWarehouses(result.data);
     };
@@ -39,7 +39,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/users/register", dataUser);
+      await axios.post("https://inventory-management-api.vercel.app/api/users/register", dataUser);
       setIsSuccess(true);
     } catch (error) {
       setErrorMessage(error.response.data.message);

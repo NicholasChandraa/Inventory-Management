@@ -38,7 +38,7 @@ function Login() {
     let { email, password } = input;
 
     axios
-      .post("http://localhost:5000/api/users/login", {
+      .post("https://inventory-management-api.vercel.app/api/users/login", {
         email,
         password,
       })

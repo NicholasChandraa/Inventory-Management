@@ -22,7 +22,7 @@ function ResetPassword() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/users/resetPassword/${token}`,
+        `https://inventory-management-api.vercel.app/api/users/resetPassword/${token}`,
         { password }
       );
       setMessage("Password Anda telah berhasil direset. Silakan login.");
