@@ -23,7 +23,7 @@ function CustomerType() {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/customers/customer-types",
+        "http://inventory-management-api.vercel.app/api/customers/customer-types",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ function CustomerType() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/customers/customer-types",
+        "http://inventory-management-api.vercel.app/api/customers/customer-types",
         { name: newType, warehouse: warehouseId },
         {
           headers: {
@@ -81,7 +81,7 @@ function CustomerType() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/customers/customer-types/${typeId}?warehouse=${warehouseId}`,
+        `http://inventory-management-api.vercel.app/api/customers/customer-types/${typeId}?warehouse=${warehouseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

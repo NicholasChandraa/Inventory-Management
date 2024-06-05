@@ -37,7 +37,7 @@ function detailCustomer() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/customers/${customerId}`,
+        `http://inventory-management-api.vercel.app/api/customers/${customerId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -87,7 +87,7 @@ function detailCustomer() {
     const token = Cookies.get("Token");
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/customers/customer-types",
+        "http://inventory-management-api.vercel.app/api/customers/customer-types",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -137,7 +137,7 @@ function detailCustomer() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/customers/${customerId}`,
+        `http://inventory-management-api.vercel.app/api/customers/${customerId}`,
         updateData,
         {
           headers: {
