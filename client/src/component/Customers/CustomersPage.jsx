@@ -39,7 +39,7 @@ function CustomerPage() {
 
   async function fetchCustomers(warehouseId, token) {
     try {
-      const result = await axios.get("http://localhost:5000/api/customers/", {
+      const result = await axios.get("https://inventory-management-api.vercel.app/api/customers/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
