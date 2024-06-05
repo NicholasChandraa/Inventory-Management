@@ -24,6 +24,7 @@ const corsOptions = {
     origin: 'https://inventory-management-rose.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
@@ -33,6 +34,13 @@ app.use(bodyParser.json());
 
 // Inisialisasi Socket.io
 const io = socketConfig.init(server);
+
+io.on('connection', (socket) => {
+    console.log('New client connected');
+    socket.on('disconnect', () => {
+        console.log('Client disconnected');
+    });
+});
 
 // CONNECTION TO DATABASE MONGO DB
 mongoose.connect(process.env.DB_URI)

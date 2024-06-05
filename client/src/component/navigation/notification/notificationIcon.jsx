@@ -38,8 +38,11 @@ const NotificationIcon = () => {
   }, [allNotifications, userWarehouseId]);
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-
+    const socket = socketIOClient(ENDPOINT, {
+      transports: ['websocket', 'polling'],
+      withCredentials: true
+    });
+    
     const handleNewNotification = (notification) => {
       setAllNotifications(prevNotifications => {
         const newNotification = { ...notification, read: false };

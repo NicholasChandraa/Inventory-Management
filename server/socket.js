@@ -5,8 +5,10 @@ let io;
 const init = (server) => {
   io = socketIo(server, {
     cors: {
-      origin: "*",
-      methods: ["GET", "POST"]
+      origin: "https://inventory-management-rose.vercel.app",
+      methods: ["GET", "POST"],
+      allowedHeaders: ["Content-Type"],
+      credentials: true
     }
   });
   return io;
