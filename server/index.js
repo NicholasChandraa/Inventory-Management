@@ -32,7 +32,13 @@ mongoose.connect(process.env.DB_URI)
     console.log(error);
 })
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://inventory-management-rose.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 
