@@ -56,6 +56,15 @@ app.use('/api/sales', SaleRouter);
 app.use('/api/distribution', DistributionRouter);
 app.use('/api/dashboard', DashboardRouter);
 
+app.get('/api/status', async (req, res) => {
+    try {
+        const result = await mongoose.connection.db.admin().ping();
+        res.status(200).json({ message: 'Database connection is healthy', result });
+    } catch (error) {
+        res.status(500).json({ message: 'Database connection failed', error });
+    }
+});
+
 app.get('/api/users/test', (req, res) => {
     res.send('Users endpoint works!');
 });
