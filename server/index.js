@@ -32,15 +32,7 @@ mongoose.connect(process.env.DB_URI)
     console.log(error);
 })
 
-// Middleware CORS
-const corsOptions = {
-    origin: 'https://inventory-management-rose.vercel.app/', // Anda bisa menggantinya dengan domain spesifik seperti 'https://your-vercel-domain.vercel.app'
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204
-  };
-  app.use(cors(corsOptions));
-
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -56,15 +48,6 @@ app.use('/api/customers', CustomerRouter);
 app.use('/api/sales', SaleRouter);
 app.use('/api/distribution', DistributionRouter);
 app.use('/api/dashboard', DashboardRouter);
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
-});
 
 // Listen on Port
 server.listen(port, () => {
