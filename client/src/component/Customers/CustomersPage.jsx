@@ -66,7 +66,7 @@ function CustomerPage() {
   async function fetchCustomerTypes(token) {
     try {
       const result = await axios.get(
-        "http://inventory-management-api.vercel.app/api/customers/customer-types",
+        "https://inventory-management-api.vercel.app/api/customers/customer-types",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -129,7 +129,7 @@ function CustomerPage() {
     if (!token) return;
 
     try {
-      await axios.delete(`http://inventory-management-api.vercel.app/api/customers/${customerIdToDelete}`, {
+      await axios.delete(`https://inventory-management-api.vercel.app/api/customers/${customerIdToDelete}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

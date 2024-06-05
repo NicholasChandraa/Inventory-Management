@@ -50,7 +50,7 @@ function addCustomers() {
   const fetchCustomerTypes = async (token) => {
     try {
       const response = await axios.get(
-        "http://inventory-management-api.vercel.app/api/customers/customer-types",
+        "https://inventory-management-api.vercel.app/api/customers/customer-types",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ function addCustomers() {
     if (isNewType && newTypeName.trim()) {
       try {
         const typeResponse = await axios.post(
-          "http://inventory-management-api.vercel.app/api/customers/customer-types",
+          "https://inventory-management-api.vercel.app/api/customers/customer-types",
           { name: newTypeName, warehouse: warehouseId },
           { headers: { Authorization: `Bearer ${token}` } },
         );
