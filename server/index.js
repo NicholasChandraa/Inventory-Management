@@ -34,13 +34,13 @@ mongoose.connect(process.env.DB_URI)
 
 // Middleware CORS
 const corsOptions = {
-    origin: '*', // Anda bisa menggantinya dengan domain spesifik seperti 'https://your-vercel-domain.vercel.app'
+    origin: 'https://inventory-management-rose.vercel.app/', // Anda bisa menggantinya dengan domain spesifik seperti 'https://your-vercel-domain.vercel.app'
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204
   };
   app.use(cors(corsOptions));
-  
+
 app.use(express.json());
 app.use(bodyParser.json());
 
