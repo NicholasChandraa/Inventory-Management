@@ -35,7 +35,7 @@ function ResetPassword() {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-1/3 mx-auto p-8 shadow-xl rounded-md">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between">
           <h1 className="font-bold">MANAGEMENT <br /> INVENTORY</h1>
           <img src={LogoPolytech} alt="Logo Polytech" className="w-32" />
         </div>
