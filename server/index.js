@@ -23,6 +23,7 @@ const port = process.env.PORT || 5000;
 const corsOptions = {
     origin: 'https://inventory-management-rose.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
