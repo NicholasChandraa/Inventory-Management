@@ -34,7 +34,7 @@ mongoose.connect(process.env.DB_URI)
 
 // Middleware CORS
 const corsOptions = {
-    origin: 'https://inventory-management-api.vercel.app/',
+    origin: 'https://inventory-management-rose.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204
