@@ -3,13 +3,18 @@
   "builds": [
     {
       "src": "server/index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "installCommand": "npm install"
+      }
     },
     {
       "src": "client/vite.config.js",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "client/dist"
+        "distDir": "client/dist",
+        "installCommand": "npm install",
+        "buildCommand": "npm run build"
       }
     }
   ],
