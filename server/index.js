@@ -35,13 +35,6 @@ app.use(bodyParser.json());
 // Inisialisasi Socket.io
 const io = socketConfig.init(server);
 
-io.on('connection', (socket) => {
-    console.log('New client connected');
-    socket.on('disconnect', () => {
-        console.log('Client disconnected');
-    });
-});
-
 // CONNECTION TO DATABASE MONGO DB
 mongoose.connect(process.env.DB_URI)
 .then(() => {
