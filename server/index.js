@@ -55,6 +55,10 @@ app.use('/api/sales', SaleRouter);
 app.use('/api/distribution', DistributionRouter);
 app.use('/api/dashboard', DashboardRouter);
 
+app.get('/api/users/test', (req, res) => {
+    res.send('Users endpoint works!');
+});
+
 // Listen on Port
 server.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}`);
