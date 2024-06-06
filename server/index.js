@@ -24,6 +24,7 @@ const corsOptions = {
     origin: 'https://inventory-management-rose.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
