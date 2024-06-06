@@ -82,8 +82,8 @@ function InventoryStockMovement() {
         <table className="min-w-full bg-white">
           <thead>
             <tr className="w-full h-16 border-gray-300 border-b py-8">
-              <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider rounded-tl-md">Kategori</th>
-              <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Nama Produk</th>
+              <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider rounded-tl-md">Nama Produk</th>
+              <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Kategori</th>
               <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">SKU</th>
               <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total Stok Masuk</th>
               <th className="px-5 py-3 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Stok Masuk</th>
@@ -94,8 +94,8 @@ function InventoryStockMovement() {
           <tbody>
             {filteredStockMovements.map((movement, index) => (
               <tr key={index} className="h-14 border-gray-300 border-b">
-                <td className="px-6">{movement.category}</td>
                 <td className="px-6 cursor-pointer text-blue-600 hover:text-blue-800" onClick={() => handleOrderNumberClick(movement.productId)}>{movement.productName}</td>
+                <td className="px-6">{movement.category}</td>
                 <td className="px-6">{movement.sku}</td>
                 <td className="px-6">{movement.initialQuantity}</td>
                 <td className="px-6">{movement.inQuantity}</td>
