@@ -34,6 +34,7 @@ import DistributionPage from "./component/Distribution/DistributionPage";
 import AddDistribution from "./component/Distribution/AddDistribution";
 import EditDistribution from "./component/Distribution/EditDistribution";
 import Dashboard from "./component/Dashboard/Dashboard";
+import ProtectedRoute from "./component/ProtectedRoute";
 
 function App() {
   const LoginRoute = (props) => {
@@ -48,268 +49,379 @@ function App() {
       <ProfileImageProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/Login/*" element={<Login />} />
+            <Route path="/LupaPassword/*" element={<LupaPassword />} />
+            <Route path="/Register/*" element={<Register />} />
+            <Route path="/resetPassword/:token/*" element={<ResetPassword />} />
+
             <Route
               path="/*"
               element={
-                <Layout>
-                  <Home />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/notifications"
               element={
-                <Layout>
-                  <NotificationPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <NotificationPage />
+                    </Layout>
+                  }
+                />
               }
             />
-            <Route
-              path="/Login/*"
-              element={
-                // <LoginRoute>
-                <Login />
-                // </LoginRoute>
-              }
-            />
-            <Route path="/LupaPassword/*" element={<LupaPassword />} />
-            <Route path="/Register/*" element={<Register />} />
+
             <Route
               path="/Product/*"
               element={
-                <Layout>
-                  <ProductPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <ProductPage />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/Product/ProductPage/*"
               element={
-                <Layout>
-                  <ProductPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <ProductPage />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/Product/ProductDetailPage/:id/*"
               element={
-                <Layout>
-                  <ProductDetailPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <ProductDetailPage />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/Product/ProductCategory/*"
               element={
-                <Layout>
-                  <ProductCategory />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <ProductCategory />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/Product/ProductPage/AddProduct/*"
               element={
-                <Layout>
-                  <AddProduct />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <AddProduct />
+                    </Layout>
+                  }
+                />
               }
             />
             <Route
               path="/Product/ProductPage/EditProduct/:id"
               element={
-                <Layout>
-                  <EditProduct />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <EditProduct />
+                    </Layout>
+                  }
+                />
               }
             />
-            <Route path="/resetPassword/:token/*" element={<ResetPassword />} />
-            <Route path="/Register/*" element={<Register />} />
+
             <Route
               path="/profile/updateProfile/*"
               element={
-                <Layout>
-                  <UserProfile />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <UserProfile />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/profile/changePassword/*"
               element={
-                <Layout>
-                  <ChangePasswordForm />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <ChangePasswordForm />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/inventory/*"
               element={
-                <Layout>
-                  <InventoryPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <InventoryPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/inventory/inventoryPage/*"
               element={
-                <Layout>
-                  <InventoryPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <InventoryPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/inventory/inventoryPage/InventoryOutStock/*"
               element={
-                <Layout>
-                  <InventoryOutStock />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <InventoryOutStock />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/inventory/inventoryPage/InventoryStockMovement/*"
               element={
-                <Layout>
-                  <InventoryStockMovement />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <InventoryStockMovement />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/inventory/inventoryPage/InventoryStockMovement/Detail/:id"
               element={
-                <Layout>
-                  <StockMovementDetails />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <StockMovementDetails />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/customer/*"
               element={
-                <Layout>
-                  <CustomerPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <CustomerPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/customer/customerPage/*"
               element={
-                <Layout>
-                  <CustomerPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <CustomerPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/customer/customerPage/addCustomers/*"
               element={
-                <Layout>
-                  <AddCustomers />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <AddCustomers />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/customer/customerPage/customerType/*"
               element={
-                <Layout>
-                  <CustomerType />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <CustomerType />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/customer/customerPage/detailCustomer/:customerId"
               element={
-                <Layout>
-                  <DetailCustomer />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <DetailCustomer />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/sales/salesPage/*"
               element={
-                <Layout>
-                  <SalesPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <SalesPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/sales/*"
               element={
-                <Layout>
-                  <SalesPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <SalesPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/sales/salesPage/addSales/*"
               element={
-                <Layout>
-                  <AddSales />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <AddSales />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/sales/salesPage/saleDetail/:saleId"
               element={
-                <Layout>
-                  <SaleDetail />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <SaleDetail />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/distribution/*"
               element={
-                <Layout>
-                  <DistributionPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <DistributionPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/distribution/distributionPage/*"
               element={
-                <Layout>
-                  <DistributionPage />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <DistributionPage />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/distribution/distributionPage/addDistribution/*"
               element={
-                <Layout>
-                  <AddDistribution />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <AddDistribution />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/distribution/distributionPage/editDistribution/:id"
               element={
-                <Layout>
-                  <EditDistribution />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <EditDistribution />
+                    </Layout>
+                  }
+                />
               }
             />
 
             <Route
               path="/dashboard/*"
               element={
-                <Layout>
-                  <Dashboard />
-                </Layout>
+                <ProtectedRoute
+                  element={
+                    <Layout>
+                      <Dashboard />
+                    </Layout>
+                  }
+                />
               }
             />
           </Routes>
