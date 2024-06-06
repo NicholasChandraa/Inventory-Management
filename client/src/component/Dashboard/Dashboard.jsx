@@ -190,6 +190,69 @@ function Dashboard() {
         </div>
       </div>
 
+      <div className="my-6 shadow border rounded-lg">
+        <h3 className="my-6 text-lg font-medium text-center">
+          Statistik Profit Penjualan dan Pengeluaran Distribusi Per Hari Ini
+        </h3>
+        <LineChart
+          width={1200}
+          height={300}
+          data={chartDataAndDate}
+          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+          className="p-2"
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip
+            formatter={(value, name) => [`Rp. ${value.toLocaleString()}`, name]}
+          />
+          <Legend
+            formatter={(value) => {
+              if (value === "totalSales") return "Penjualan Total";
+              if (value === "totalExpenses") return "Total Pengeluaran";
+              if (value === "profit") return "Keuntungan";
+              return value;
+            }}
+          />
+          <Line
+            type="monotone"
+            dataKey="totalSales"
+            stroke="#82ca9d"
+            activeDot={{ r: 8 }}
+            name="Total Pendapatan Penjualan"
+          />
+          <Line
+            type="monotone"
+            dataKey="totalExpenses"
+            stroke="#8884d8"
+            name="Total Pengeluaran Distribusi"
+          />
+          <Line
+            type="monotone"
+            dataKey="profit"
+            stroke="#ffc658"
+            name="Keuntungan"
+          />
+        </LineChart>
+
+        <div className="flex justify-between">
+          <h3 className="mx-10 mb-10 text-red-600 font-medium">
+            Penjualan Profit :
+            <span className="font-bold"> {revenue.toLocaleString()}</span>
+          </h3>
+
+          <h3 className="mx-10 mb-10 font-medium">
+            Total :<span className="font-bold"> {profit.toLocaleString()}</span>
+          </h3>
+
+          <h3 className="mx-10 mb-10 text-blue-600 font-medium">
+            Pengeluaran Distribusi :
+            <span className="font-bold"> {expenses.toLocaleString()}</span>
+          </h3>
+        </div>
+      </div>
+
       <div className="flex flex-col">
         <div className="my-6 shadow border rounded-lg">
           <h3 className="my-6 text-lg font-medium text-center">
@@ -204,10 +267,12 @@ function Dashboard() {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip formatter={(value, name) => [
+            <Tooltip
+              formatter={(value, name) => [
                 `Rp. ${value.toLocaleString()}`,
                 name,
-              ]} />
+              ]}
+            />
             <Legend />
             <Line type="monotone" dataKey="value" stroke="#8884d8" />
           </LineChart>
@@ -216,73 +281,6 @@ function Dashboard() {
             Keuntungan :
             <span className="font-bold"> {profit.toLocaleString()}</span>
           </h3>
-        </div>
-
-        <div className="my-6 shadow border rounded-lg">
-          <h3 className="my-6 text-lg font-medium text-center">
-            Statistik Profit Penjualan dan Pengeluaran Distribusi Per Hari Ini
-          </h3>
-          <LineChart
-            width={1200}
-            height={300}
-            data={chartDataAndDate}
-            margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-            className="p-2"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip
-              formatter={(value, name) => [
-                `Rp. ${value.toLocaleString()}`,
-                name,
-              ]}
-            />
-            <Legend
-              formatter={(value) => {
-                if (value === "totalSales") return "Penjualan Total";
-                if (value === "totalExpenses") return "Total Pengeluaran";
-                if (value === "profit") return "Keuntungan";
-                return value;
-              }}
-            />
-            <Line
-              type="monotone"
-              dataKey="totalSales"
-              stroke="#82ca9d"
-              activeDot={{ r: 8 }}
-              name="Total Pendapatan Penjualan"
-            />
-            <Line
-              type="monotone"
-              dataKey="totalExpenses"
-              stroke="#8884d8"
-              name="Total Pengeluaran Distribusi"
-            />
-            <Line
-              type="monotone"
-              dataKey="profit"
-              stroke="#ffc658"
-              name="Keuntungan"
-            />
-          </LineChart>
-
-          <div className="flex justify-between">
-            <h3 className="mx-10 mb-10 text-red-600 font-medium">
-              Penjualan Profit :
-              <span className="font-bold"> {revenue.toLocaleString()}</span>
-            </h3>
-
-            <h3 className="mx-10 mb-10 font-medium">
-              Total :
-              <span className="font-bold"> {profit.toLocaleString()}</span>
-            </h3>
-
-            <h3 className="mx-10 mb-10 text-blue-600 font-medium">
-              Pengeluaran Distribusi :
-              <span className="font-bold"> {expenses.toLocaleString()}</span>
-            </h3>
-          </div>
         </div>
 
         <div className="my-6 shadow border rounded-lg">
@@ -299,10 +297,12 @@ function Dashboard() {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip formatter={(value, name) => [
+            <Tooltip
+              formatter={(value, name) => [
                 `Rp. ${value.toLocaleString()}`,
                 name,
-              ]} />
+              ]}
+            />
             <Legend />
             <Line type="monotone" dataKey="amount" stroke="#8884d8" />
           </LineChart>
@@ -354,11 +354,13 @@ function Dashboard() {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip formatter={(value, name) => [
+            <Tooltip
+              formatter={(value, name) => [
                 `Rp. ${value.toLocaleString()}`,
                 name,
-              ]} />
-              <Legend
+              ]}
+            />
+            <Legend
               formatter={(value) =>
                 value === "totalCost" ? "Total Pengeluaran Distribusi" : value
               }
