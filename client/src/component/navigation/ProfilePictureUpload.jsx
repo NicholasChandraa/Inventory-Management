@@ -8,7 +8,9 @@ import { Modal, Button } from 'antd';
 function ProfilePictureUpload({ onUploadSuccess }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-   const token = Cookies.get("Token");
+   
+  
+  const token = Cookies.get("Token");
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
