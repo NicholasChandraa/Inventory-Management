@@ -44,6 +44,7 @@ mongoose.connect(process.env.DB_URI)
     console.log(error);
 })
 
+
 // Untuk Upload Gambar
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
