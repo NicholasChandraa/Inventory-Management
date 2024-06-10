@@ -28,7 +28,6 @@ function Login() {
     let name = event.target.name;
     let value = event.target.value;
 
-
     setInput({ ...input, [name]: value });
   };
 
@@ -62,6 +61,11 @@ function Login() {
     <>
       <div className="flex min-h-screen items-center justify-center">
         <div className="w-1/3 mx-auto p-8 shadow-xl rounded-md">
+          <div className="bg-yellow-200 text-yellow-700 p-4 mb-4 border border-yellow-300 rounded">
+            <p>
+              Pemberitahuan: Fitur notifikasi di website ini saat in tidak berfungsi karena Vercel tidak mendukung WebSocket.io.
+            </p>
+          </div>
           <div className="flex justify-between items-center mb-10">
             <p className="inline-block font-bold">
               INVENTORY <br></br> MANAGEMENT
