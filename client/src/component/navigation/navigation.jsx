@@ -16,6 +16,7 @@ import NotificationPage from "./notification/notificationPage";
 import profilePlaceholder from "../../assets/pp.jpg";
 import Login from "../Login/Login";
 import { useProfileImage } from "../../context/ProfileImageContext";
+import fotoprofile from "../../assets/profileDefault.jpg";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -100,7 +101,7 @@ function Navigation() {
             <Menu as="div" className="ml-4 relative">
               <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300">
                 <span className="sr-only">Open user menu</span>
-                <img className="w-14 h-14 rounded-full" src={profileImageUrl || profilePictureUrl} alt="Profile Picture" />
+                <img className="w-14 h-14 rounded-full" src={profileImageUrl || profilePictureUrl || fotoprofile} alt="Profile Picture" />
                 <ChevronDownIcon className="w-4 ml-2 my-auto" aria-hidden="true" />
               </Menu.Button>
               <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
