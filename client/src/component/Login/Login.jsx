@@ -63,7 +63,7 @@ function Login() {
         <div className="w-1/3 mx-auto p-8 shadow-xl rounded-md">
           <div className="bg-yellow-200 text-yellow-700 p-4 mb-4 border border-yellow-300 rounded">
             <p>
-              Pemberitahuan: Fitur notifikasi di website ini saat in tidak berfungsi karena Vercel tidak mendukung WebSocket.io.
+              Pemberitahuan: Fitur notifikasi dan foto profile di website ini saat ini tidak berfungsi karena Vercel tidak mendukung WebSocket.io dan file upload.
             </p>
           </div>
           <div className="flex justify-between items-center mb-10">

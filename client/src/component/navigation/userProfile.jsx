@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { useProfileImage } from "../../context/ProfileImageContext";
 import ChangePasswordForm from "./ChangePasswordForm";
 import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import fotoprofile from "../../assets/profileDefault.jpg"
 
 function UserProfile(props) {
   const [userData, setUserData] = useState({
@@ -188,7 +189,7 @@ function UserProfile(props) {
         <div className="flex flex-col items-center justify-center bg-blue-500 p-4 rounded-t-lg mb-4">
           <img
             className="w-20 h-20 rounded-full"
-            src={profileImageUrl}
+            src={profileImageUrl || fotoprofile}
             alt="Profile Picture"
           />
           <h2 className="text-xl font-semibold text-white mt-2">
