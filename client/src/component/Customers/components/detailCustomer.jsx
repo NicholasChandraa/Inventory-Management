@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function detailCustomer() {
   const { customerId } = useParams();
@@ -14,7 +14,7 @@ function detailCustomer() {
   const [newType, setNewType] = useState("");
   const [isCreatingNewType, setIsCreatingNewType] = useState(false);
   const [customerTypes, setCustomerTypes] = useState([]);
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false); 
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -49,7 +49,6 @@ function detailCustomer() {
           customerType:
             response.data.customerType?._id || response.data.customerType || "",
         });
-
       } else {
         console.error("Customer data not found in the response");
       }
@@ -59,7 +58,9 @@ function detailCustomer() {
   };
 
   const getCustomerTypeId = (customerTypeName) => {
-    const customerType = customerTypes.find((type) => type.name === customerTypeName);
+    const customerType = customerTypes.find(
+      (type) => type.name === customerTypeName,
+    );
     return customerType ? customerType._id : "Tidak ada id tipe pelanggan!";
   };
 
@@ -100,7 +101,7 @@ function detailCustomer() {
 
   const handleTypeSelection = (e) => {
     const selectedType = e.target.value;
-    console.log(selectedType)
+    console.log(selectedType);
     if (selectedType === "newType") {
       setIsCreatingNewType(true);
     } else {
@@ -121,7 +122,7 @@ function detailCustomer() {
     setShowConfirmationModal(true);
   };
 
-  const handleConfirmSubmit = async () => { 
+  const handleConfirmSubmit = async () => {
     const token = Cookies.get("Token");
     let updateData = { ...editableCustomer };
     if (isCreatingNewType && newType) {
@@ -153,51 +154,64 @@ function detailCustomer() {
         window.location.reload();
       }
     } catch (error) {
-      console.error("Error updating customer:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error updating customer:",
+        error.response ? error.response.data : error.message,
+      );
     }
     setShowConfirmationModal(false);
   };
 
-
   if (!customer) return <div>Loading...</div>;
 
   return (
-    <div className="container w-2/5 mx-auto my-8 pt-4 pb-10 px-8 bg-white rounded-lg shadow-lg max-w-2xl">
+    <div className="container max-w-4xl mx-auto my-8 pt-4 pb-10 px-4 md:px-8 lg:px-16 bg-white rounded-lg shadow-lg">
       <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 mb-10">
-              Pelanggan Detail
-            </h2>
-            <div className="border-b-2"></div>
+        Pelanggan Detail
+      </h2>
+      <div className="border-b-2 mb-6"></div>
       {!isEditing ? (
-          <div className="">
-            <div className="mt-8 space-y-6">
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md border p-3 rounded-md">
-                <span>Nama </span> <span className="text-gray-900">{customer.name}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
-                <span>Email </span> <span className="text-gray-900">{customer.email}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
-                <span>No Handphone </span> <span className="text-gray-900">{customer.phone}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
-                <span>Tipe Pelanggan </span> <span className="text-gray-900">{customer.customerType || customer.customerType.name}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
-                <span>Gudang </span> <span className="text-gray-900">{customer.warehouse && customer.warehouse.name}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex flex-col border p-3 rounded-md">
-                <span>Alamat </span> <span className="text-gray-900 mt-2">{`${customer.address.street}, ${customer.address.city}, ${customer.address.state}, ${customer.address.zipCode}`}</span>
-              </div>
-              <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
-                <span>Dibuat Pada </span> <span className="text-gray-900">{new Date(customer.createdAt).toLocaleString()}</span>
-              </div>
+        <div>
+          <div className="space-y-6">
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>Nama </span>
+              <span className="text-gray-900">{customer.name}</span>
             </div>
-            <button
-              onClick={toggleEdit}
-              className="group relative w-full mt-8 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Edit
-            </button>
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>Email </span>
+              <span className="text-gray-900">{customer.email}</span>
+            </div>
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>No Handphone </span>
+              <span className="text-gray-900">{customer.phone}</span>
+            </div>
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>Tipe Pelanggan </span>
+              <span className="text-gray-900">
+                {customer.customerType?.name}
+              </span>
+            </div>
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>Gudang </span>
+              <span className="text-gray-900">{customer.warehouse?.name}</span>
+            </div>
+            <div className="text-sm font-medium text-gray-600 flex flex-col border p-3 rounded-md">
+              <span>Alamat </span>
+              <span className="text-gray-900 mt-2">{`${customer.address.street}, ${customer.address.city}, ${customer.address.state}, ${customer.address.zipCode}`}</span>
+            </div>
+            <div className="text-sm font-medium text-gray-600 flex justify-between border p-3 rounded-md">
+              <span>Dibuat Pada </span>
+              <span className="text-gray-900">
+                {new Date(customer.createdAt).toLocaleString()}
+              </span>
+            </div>
+          </div>
+          <button
+            onClick={toggleEdit}
+            className="group relative w-full mt-8 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Edit
+          </button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -259,8 +273,15 @@ function detailCustomer() {
                 className="mt-1 p-2 w-full border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             )}
-            <label className="block text-sm font-medium text-gray-700 mt-6">Gudang:</label>
-            <input type="text" value={customer.warehouse?.name} className="mt-1 p-2 w-full border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" disabled />
+            <label className="block text-sm font-medium text-gray-700 mt-6">
+              Gudang:
+            </label>
+            <input
+              type="text"
+              value={customer.warehouse?.name}
+              className="mt-1 p-2 w-full border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled
+            />
 
             <label className="block text-sm font-medium text-gray-700 mt-6">
               Nama Jalan:
@@ -324,18 +345,30 @@ function detailCustomer() {
         </form>
       )}
       <div className="mt-5">
-      <Link to={'/customer'} className="text-blue-600 font-medium text-lg">
-        Kembali ke Daftar Halaman
-      </Link>
+        <Link to={"/customer"} className="text-blue-600 font-medium text-lg">
+          Kembali ke Daftar Halaman
+        </Link>
       </div>
 
-      <Modal show={showConfirmationModal} onClose={() => setShowConfirmationModal(false)}>
+      <Modal
+        show={showConfirmationModal}
+        onClose={() => setShowConfirmationModal(false)}
+      >
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin mengedit atau mengubah data pelanggan?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin mengedit atau mengubah data pelanggan?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowConfirmationModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmSubmit}>Iya</Button>
+          <Button
+            color="failure"
+            onClick={() => setShowConfirmationModal(false)}
+          >
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmSubmit}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </div>

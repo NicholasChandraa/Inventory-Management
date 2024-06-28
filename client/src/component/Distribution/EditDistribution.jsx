@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import DistributionNavigation from "./DistributionNavigation";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react'; 
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function EditDistribution() {
   const [form, setForm] = useState({
@@ -60,15 +60,19 @@ function EditDistribution() {
   const handleConfirmSubmit = async () => {
     const token = Cookies.get("Token");
     try {
-      await axios.put(`https://inventory-management-api.vercel.app/api/distribution/${id}`, form, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.put(
+        `https://inventory-management-api.vercel.app/api/distribution/${id}`,
+        form,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       navigate("/distribution");
     } catch (error) {
       console.error("There was an error updating the distribution:", error);
     }
     setShowConfirmationModal(false);
-  }
+  };
 
   // Form inputs and submit button here...
 
@@ -246,8 +250,6 @@ function EditDistribution() {
 
           {/* Submit button */}
           <div className="flex justify-between">
-            
-
             <Link to={"/distribution"}>
               <button className="px-4 py-2 mr-4 bg-red-500 text-white rounded-md hover:bg-blue-700 transition duration-300">
                 Batal
@@ -264,13 +266,27 @@ function EditDistribution() {
         </form>
       </div>
 
-      <Modal show={showConfirmationModal} onClose={() => setShowConfirmationModal(false)}> {/* Modifikasi */}
+      <Modal
+        show={showConfirmationModal}
+        onClose={() => setShowConfirmationModal(false)}
+      >
+        {" "}
+        {/* Modifikasi */}
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin mengedit atau ubah?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin mengedit atau ubah?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowConfirmationModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmSubmit}>Iya</Button>
+          <Button
+            color="failure"
+            onClick={() => setShowConfirmationModal(false)}
+          >
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmSubmit}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </>

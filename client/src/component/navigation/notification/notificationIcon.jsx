@@ -1,14 +1,14 @@
 /* eslint-disable */
 
-import React, { useState, useRef, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
+import React, { useState, useRef, useEffect } from "react";
+import socketIOClient from "socket.io-client";
 import logoNotification from "../../../assets/logoNotification.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import styles from "./notificationIcon.module.css";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ENDPOINT = "https://inventory-management-api.vercel.app";
 
@@ -33,21 +33,26 @@ const NotificationIcon = () => {
 
   useEffect(() => {
     // Filter notifikasi berdasarkan gudang
-    const filteredNotifications = allNotifications.filter(notification => notification.warehouse === userWarehouseId);
+    const filteredNotifications = allNotifications.filter(
+      (notification) => notification.warehouse === userWarehouseId,
+    );
     setVisibleNotifications(filteredNotifications.slice(0, 10)); // Ambil hanya 10 notifikasi terbaru untuk ditampilkan
   }, [allNotifications, userWarehouseId]);
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT, {
-      transports: ['websocket', 'polling'],
-      withCredentials: true
+      transports: ["websocket", "polling"],
+      withCredentials: true,
     });
-    
+
     const handleNewNotification = (notification) => {
-      setAllNotifications(prevNotifications => {
+      setAllNotifications((prevNotifications) => {
         const newNotification = { ...notification, read: false };
         const updatedNotifications = [newNotification, ...prevNotifications];
-        localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
+        localStorage.setItem(
+          "notifications",
+          JSON.stringify(updatedNotifications),
+        );
         return updatedNotifications;
       });
       toast.info(notification.message);
@@ -84,11 +89,14 @@ const NotificationIcon = () => {
   }, []);
 
   const markAsRead = (id) => {
-    setAllNotifications(currentNotifications => {
-      const updatedNotifications = currentNotifications.map(notification =>
-        notification.id === id ? { ...notification, read: true } : notification
+    setAllNotifications((currentNotifications) => {
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notification.id === id ? { ...notification, read: true } : notification,
       );
-      localStorage.setItem("notifications", JSON.stringify(updatedNotifications));
+      localStorage.setItem(
+        "notifications",
+        JSON.stringify(updatedNotifications),
+      );
       return updatedNotifications;
     });
   };
@@ -99,33 +107,47 @@ const NotificationIcon = () => {
   };
 
   return (
-    <div className="relative ml-10 mr-5" ref={notificationRef}>
-      <button onMouseEnter={() => setShowNotifications(true)} className="focus:outline-none">
-        <img src={logoNotification} className="w-6 h-6" alt="Notifications" />
+    <div className="relative ml-2 md:ml-10 mr-2 md:mr-5" ref={notificationRef}>
+      <button
+        onMouseEnter={() => setShowNotifications(true)}
+        className="focus:outline-none"
+      >
+        <img
+          src={logoNotification}
+          className="w-4 md:w-6 h-4 md:h-6"
+          alt="Notifications"
+        />
       </button>
       {showNotifications && (
-        <div className="absolute right-0 mt-2 w-72 bg-white shadow-xl z-10" onMouseLeave={() => setShowNotifications(false)}>
-          <div className="p-4">
-            {visibleNotifications.length > 0 ? visibleNotifications.map(notification => (
-              <div
-                key={notification.id}
-                onClick={() => navigateToNotificationDetail(notification.id)}
-                className={`cursor-pointer p-2 hover:bg-gray-100 ${styles.hoverNotificationIcon} ${notification.read ? 'text-gray-500' : 'text-black'}`}
-              >
-                {notification.message}
-                {!notification.read && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      markAsRead(notification.id);
-                    }}
-                    className={`text-blue-500 text-xs block ${styles.buttonMarkAsRead}`}
-                  >
-                    Tandai
-                  </button>
-                )}
-              </div>
-            )) : <div className='w-56'>Tidak Ada Notifikasi.</div>}
+        <div
+          className="absolute right-0 mt-2 w-48 md:w-72 bg-white shadow-xl z-10"
+          onMouseLeave={() => setShowNotifications(false)}
+        >
+          <div className="p-2 md:p-4">
+            {visibleNotifications.length > 0 ? (
+              visibleNotifications.map((notification) => (
+                <div
+                  key={notification.id}
+                  onClick={() => navigateToNotificationDetail(notification.id)}
+                  className={`cursor-pointer p-1 md:p-2 hover:bg-gray-100 ${notification.read ? "text-gray-500" : "text-black"}`}
+                >
+                  {notification.message}
+                  {!notification.read && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        markAsRead(notification.id);
+                      }}
+                      className="text-blue-500 text-xs block"
+                    >
+                      Tandai
+                    </button>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="w-36 md:w-56">Tidak Ada Notifikasi.</div>
+            )}
           </div>
         </div>
       )}
@@ -135,7 +157,3 @@ const NotificationIcon = () => {
 };
 
 export default NotificationIcon;
-
-
-
-

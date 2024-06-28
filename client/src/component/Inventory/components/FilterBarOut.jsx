@@ -12,10 +12,10 @@ function FilterBarOut({ onChange, initialFilters }) {
   };
 
   return (
-    <div className="m-8">
+    <div className="m-4 md:m-8">
       <h1 className="text-2xl font-semibold mb-4">STOK KELUAR</h1>
       <div className="border-b-2 mb-5"></div>
-      <form className="p-4 rounded-md shadow flex items-center space-x-4">
+      <form className="p-4 rounded-md shadow flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
         <input
           type="date"
           name="date"

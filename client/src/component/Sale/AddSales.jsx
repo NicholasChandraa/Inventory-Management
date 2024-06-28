@@ -62,11 +62,14 @@ function AddSales() {
       return;
     }
     try {
-      const response = await axios.get("https://inventory-management-api.vercel.app/api/product", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.get(
+        "https://inventory-management-api.vercel.app/api/product",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setProducts(
         response.data.map((product) => ({
           ...product,
@@ -86,11 +89,14 @@ function AddSales() {
     }
 
     try {
-      const response = await axios.get("https://inventory-management-api.vercel.app/api/customers", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.get(
+        "https://inventory-management-api.vercel.app/api/customers",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setCustomers(response.data);
     } catch (error) {
       console.error("Error fetching customers:", error.response.data);
@@ -154,7 +160,6 @@ function AddSales() {
         const inventoryItem = inventoryResponse.data[0];
         const availableStock = inventoryItem ? inventoryItem.finalQuantity : 0;
         setProdukStok(availableStock);
-
 
         setFormData({
           ...formData,
@@ -245,11 +250,15 @@ function AddSales() {
     };
 
     try {
-      await axios.post("https://inventory-management-api.vercel.app/api/sales", payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.post(
+        "https://inventory-management-api.vercel.app/api/sales",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setIsModalOpen(false);
       navigate("/sales");
     } catch (error) {

@@ -20,11 +20,13 @@ function Register() {
   const [warehouses, setWarehouses] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchWarehouses = async () => {
-      const result = await axios.get("https://inventory-management-api.vercel.app/api/warehouses");
+      const result = await axios.get(
+        "https://inventory-management-api.vercel.app/api/warehouses",
+      );
 
       setWarehouses(result.data);
     };
@@ -39,7 +41,10 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://inventory-management-api.vercel.app/api/users/register", dataUser);
+      await axios.post(
+        "https://inventory-management-api.vercel.app/api/users/register",
+        dataUser,
+      );
       setIsSuccess(true);
     } catch (error) {
       setErrorMessage(error.response.data.message);
@@ -56,20 +61,18 @@ function Register() {
     setIsError(false);
   };
 
-
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="w-1/3 mx-auto p-8 shadow-xl rounded-md">
-          <div className="flex justify-between items-center mb-10">
-            <p className="inline-block font-bold">
+      <div className="flex min-h-screen items-center justify-center px-4 md:px-8 lg:px-0">
+        <div className="w-full md:w-2/3 lg:w-1/3 mx-auto p-4 md:p-8 shadow-xl rounded-md">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+            <p className="inline-block font-bold text-center md:text-left">
               INVENTORY <br></br> MANAGEMENT
             </p>
-
             <img
               src={LogoPolytech}
               alt="Logo Polytech Indo Hausen"
-              className="inline-block w-32"
+              className="inline-block w-24 md:w-32 mt-4 md:mt-0"
             />
           </div>
 

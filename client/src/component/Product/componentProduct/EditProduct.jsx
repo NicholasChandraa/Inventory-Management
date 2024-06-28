@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
-
 function EditProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -260,13 +259,25 @@ function EditProduct() {
                 </button>
               </div>
             </form>
-            <Modal show={showConfirmationModal} onClose={() => setShowConfirmationModal(false)}>
+            <Modal
+              show={showConfirmationModal}
+              onClose={() => setShowConfirmationModal(false)}
+            >
               <ModalBody>
-                <p className="text-lg font-semibold text-center">Yakin ingin mengedit Produk?</p>
+                <p className="text-lg font-semibold text-center">
+                  Yakin ingin mengedit Produk?
+                </p>
               </ModalBody>
               <ModalFooter className="justify-center">
-                <Button color="failure" onClick={() => setShowConfirmationModal(false)}>Batal</Button>
-                <Button color="success" onClick={handleConfirmSubmit}>Iya</Button>
+                <Button
+                  color="failure"
+                  onClick={() => setShowConfirmationModal(false)}
+                >
+                  Batal
+                </Button>
+                <Button color="success" onClick={handleConfirmSubmit}>
+                  Iya
+                </Button>
               </ModalFooter>
             </Modal>
           </div>

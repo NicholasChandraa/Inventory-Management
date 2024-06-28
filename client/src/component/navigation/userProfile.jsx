@@ -7,8 +7,8 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { useProfileImage } from "../../context/ProfileImageContext";
 import ChangePasswordForm from "./ChangePasswordForm";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
-import fotoprofile from "../../assets/profileDefault.jpg"
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
+import fotoprofile from "../../assets/profileDefault.jpg";
 
 function UserProfile(props) {
   const [userData, setUserData] = useState({
@@ -25,7 +25,9 @@ function UserProfile(props) {
   useEffect(() => {
     const savedProfilePic = localStorage.getItem("profilePicture");
     if (savedProfilePic) {
-      updateProfileImage(`https://inventory-management-api.vercel.app${savedProfilePic}`);
+      updateProfileImage(
+        `https://inventory-management-api.vercel.app${savedProfilePic}`,
+      );
     }
 
     const token = Cookies.get("Token");
@@ -177,7 +179,9 @@ function UserProfile(props) {
       );
 
       // Perbarui gambar profil di konteks/state/toko global
-      updateProfileImage(`https://inventory-management-api.vercel.app${filePath}`);
+      updateProfileImage(
+        `https://inventory-management-api.vercel.app${filePath}`,
+      );
     } catch (error) {
       console.error("Kesalahan saat memperbarui gambar profil:", error);
     }
@@ -299,11 +303,17 @@ function UserProfile(props) {
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin mengubah profile?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin mengubah profile?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmUpdateProfile}>Iya</Button>
+          <Button color="failure" onClick={() => setShowModal(false)}>
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmUpdateProfile}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </div>

@@ -86,7 +86,8 @@ function SaleDetail() {
                     </div>
                   </div>
                   <div className="text-sm text-end">
-                    <span className="font-semibold">Harga Per Satuan</span> <br/> 
+                    <span className="font-semibold">Harga Per Satuan</span>{" "}
+                    <br />
                     Rp. {item.product.sellPrice.toLocaleString()}
                   </div>
                 </div>
@@ -98,13 +99,13 @@ function SaleDetail() {
                   <div className="font-bold text-gray-800">Total Harga</div>
                   <div>Rp. {sale.totalAmount.toLocaleString()}</div>
 
-                  <div className="font-bold text-gray-800 mt-3">Pembayaran Diterima</div>
+                  <div className="font-bold text-gray-800 mt-3">
+                    Pembayaran Diterima
+                  </div>
                   <div>Rp. {sale.paymentReceived.toLocaleString()}</div>
                 </div>
                 <div className="text-sm md:text-md text-gray-600 text-end">
-                  <div className="font-bold text-gray-800">
-                    Sisa Pembayaran
-                  </div>
+                  <div className="font-bold text-gray-800">Sisa Pembayaran</div>
                   <div>Rp. {sale.remainingAmount.toLocaleString()}</div>
                 </div>
               </div>
@@ -112,11 +113,15 @@ function SaleDetail() {
             <div className="py-6 px-8 border-t border-gray-200">
               <div className="flex justify-between items-center">
                 <div className="text-sm md:text-md text-gray-600">
-                  <div className="font-bold text-gray-800">Status Pembayaran</div>
+                  <div className="font-bold text-gray-800">
+                    Status Pembayaran
+                  </div>
                   <div className="text-xs md:text-sm">{sale.paymentStatus}</div>
                 </div>
                 <div className="text-sm md:text-md text-gray-600 text-end">
-                  <div className="font-bold text-gray-800">Status Pengiriman</div>
+                  <div className="font-bold text-gray-800">
+                    Status Pengiriman
+                  </div>
                   <div className="text-xs md:text-sm">
                     {sale.deliveryStatus}
                   </div>

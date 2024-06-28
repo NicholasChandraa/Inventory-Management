@@ -72,7 +72,7 @@ function InventoryPage() {
   return (
     <>
       <InventoryNavigation />
-      <div className="pt-8 pl-8">
+      <div className="pt-8 pl-4 md:pl-8">
         <h2 className="text-2xl font-semibold mb-4">STOK MASUK</h2>
         <div className="border-b-2 mb-5"></div>
       </div>
@@ -82,7 +82,6 @@ function InventoryPage() {
           onClear={handleClearFilters}
           initialFilters={filters}
         />
-
         <StockTable
           stockItems={inventoryStock}
           fetchInventoryItems={fetchInventoryItems}

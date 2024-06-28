@@ -44,17 +44,17 @@ function LupaPassword() {
 
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="w-1/3 mx-auto p-8 shadow-xl rounded-md">
-          <div className="flex justify-between items-center mb-10">
-            <h1 className="font-bold">
+      <div className="flex min-h-screen items-center justify-center px-4 md:px-8 lg:px-0">
+        <div className="w-full md:w-2/3 lg:w-1/3 mx-auto p-4 md:p-8 shadow-xl rounded-md">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+            <h1 className="font-bold text-center md:text-left">
               INVENTORY <br />
               MANAGEMENT{" "}
             </h1>
             <img
               src={LogoPolytech}
               alt="Logo Polytech Indo Hausen"
-              className="inline-block w-32"
+              className="inline-block w-24 md:w-32 mt-4 md:mt-0"
             />
           </div>
 

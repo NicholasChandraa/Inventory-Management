@@ -10,16 +10,34 @@ import iconSelling from "../../assets/iconSelling.png";
 import iconDistribution from "../../assets/iconDistribution.png";
 import iconSetting from "../../assets/iconSetting.png";
 import { NavLink, Link } from "react-router-dom";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 function Menu() {
   const activeLinkClass = "bg-blue-100 rounded-md";
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
+      <div className="md:hidden flex items-center justify-between p-4 bg-gray-700 text-white">
+        <span className="text-lg font-bold">Menu</span>
+        <button onClick={toggleMenu}>
+          {isOpen ? (
+            <XIcon className="w-6 h-6" />
+          ) : (
+            <MenuIcon className="w-6 h-6" />
+          )}
+        </button>
+      </div>
       <div
-        className={`flex flex-col py-7 px-4 font-semibold ${styles.container}`}
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:flex flex-col py-7 px-5 font-semibold border shadow-lg bg-white md:bg-transparent`}
       >
-        {/* MENU DASHBOARD */}
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
@@ -36,14 +54,12 @@ function Menu() {
           <p>Dashboard</p>
         </NavLink>
 
-        {/* TEXT KATALOG */}
         <div className="flex flex-col items-center py-1 mt-5">
           <div className="border-t border-gray-900 w-full "></div>
           <p className="font-semibold tracking-wider">KATALOG</p>
           <div className="border-t border-gray-900 w-full mb-5"></div>
         </div>
 
-        {/* MENU PRODUCT */}
         <NavLink
           to="/Product"
           className={({ isActive }) =>
@@ -60,7 +76,6 @@ function Menu() {
           <p>Produk</p>
         </NavLink>
 
-        {/* MENU INVENTORI */}
         <NavLink
           to="/inventory"
           className={({ isActive }) =>
@@ -77,7 +92,6 @@ function Menu() {
           <p>Inventori</p>
         </NavLink>
 
-        {/* MENU PELANGGAN */}
         <NavLink
           to="/customer"
           className={({ isActive }) =>
@@ -94,10 +108,8 @@ function Menu() {
           <p>Pelanggan</p>
         </NavLink>
 
-        {/* GARIS PEMBATAS */}
         <div className="border-t border-gray-900 w-full "></div>
 
-        {/* MENU PENJUALAN */}
         <NavLink
           to="/sales"
           className={({ isActive }) =>
@@ -114,7 +126,6 @@ function Menu() {
           <p>Penjualan</p>
         </NavLink>
 
-        {/* MENU DISTRIBUSI */}
         <NavLink
           to="/distribution"
           className={({ isActive }) =>
@@ -131,10 +142,8 @@ function Menu() {
           <p>Distribusi</p>
         </NavLink>
 
-        {/* GARIS PEMBATAS */}
         <div className="border-t border-gray-900 w-full "></div>
 
-        {/* PENGATURAN */}
         <NavLink
           to="/profile/updateProfile"
           className={({ isActive }) =>

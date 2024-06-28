@@ -123,52 +123,68 @@ function ProductDetailPage() {
         </ul>
 
         {inventoryItems.map((inventory) => (
-  <div
-    key={inventory._id}
-    className="bg-white shadow transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg p-6 mb-5"
-  >
-    <h3 className="text-lg leading-6 font-semibold text-gray-900">
-      Detail Inventori
-    </h3>
-    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-      <div>
-        <div className="mb-4">
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Inventori ID</div>
-            <div className="text-sm font-bold text-gray-900">{inventory._id}</div>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Terakhir Diperbarui</div>
-            <div className="text-sm font-bold text-gray-900">
-              {new Date(inventory.updatedAt).toLocaleDateString()}
+          <div
+            key={inventory._id}
+            className="bg-white shadow transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg p-6 mb-5"
+          >
+            <h3 className="text-lg leading-6 font-semibold text-gray-900">
+              Detail Inventori
+            </h3>
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+              <div>
+                <div className="mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-medium text-gray-500">
+                      Inventori ID
+                    </div>
+                    <div className="text-sm font-bold text-gray-900">
+                      {inventory._id}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-medium text-gray-500">
+                      Terakhir Diperbarui
+                    </div>
+                    <div className="text-sm font-bold text-gray-900">
+                      {new Date(inventory.updatedAt).toLocaleDateString()}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-medium text-gray-500">
+                      Catatan
+                    </div>
+                    <div className="text-sm font-bold text-gray-900">
+                      {inventory.noteIn}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-medium text-gray-500">
+                      Status
+                    </div>
+                    <div className="text-sm font-bold text-gray-900">
+                      {inventory.statusIn}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-medium text-gray-500">
+                  Diterima oleh
+                </div>
+                <div className="text-sm font-bold text-gray-900">
+                  {inventory.createdBy.email || "Unknown"}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="mb-4">
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Catatan</div>
-            <div className="text-sm font-bold text-gray-900">{inventory.noteIn}</div>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Status</div>
-            <div className="text-sm font-bold text-gray-900">{inventory.statusIn}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="mt-4">
-      <div className="flex items-center justify-between">
-        <div className="text-sm font-medium text-gray-500">Diterima oleh</div>
-        <div className="text-sm font-bold text-gray-900">
-          {inventory.createdBy.email || "Unknown"}
-        </div>
-      </div>
-    </div>
-  </div>
-))}
+        ))}
 
         <div className="flex justify-between space-x-4">
           <Link

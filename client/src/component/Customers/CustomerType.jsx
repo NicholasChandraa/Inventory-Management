@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import CustomerNavigation from "./CustomerNavigation";
 import { jwtDecode } from "jwt-decode";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function CustomerType() {
   const [customerTypes, setCustomerTypes] = useState([]);
@@ -101,32 +101,29 @@ function CustomerType() {
   return (
     <>
       <CustomerNavigation />
-      <div className="flex w-full items-start p-8">
-        <div className="mr-5 bg-white rounded-lg shadow-lg w-1/2">
-          <div className="flex items-center justify-between p-4">
+      <div className="flex flex-col lg:flex-row w-full items-start p-8 space-y-6 lg:space-y-0 lg:space-x-6">
+        <div className="bg-white rounded-lg shadow-lg w-full lg:w-1/2 p-4">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
             <h2 className="text-xl font-bold mb-2">Tambah Tipe Pelanggan</h2>
-
             <button
-              className="bg-[#67C23A] hover:bg-[#59B32D] active:bg-[#397B18] text-white py-2 px-4 rounded transition-colors font-medium"
+              className="bg-[#67C23A] hover:bg-[#59B32D] active:bg-[#397B18] text-white py-2 px-4 rounded transition-colors font-medium mt-2 lg:mt-0"
               onClick={() => setShowAddModal(true)}
             >
               Tambah
             </button>
           </div>
-
-          <hr className="border-t border-gray-400 w-full" />
-
-          <div className="flex my-14 p-4">
-            <div className="flex flex-col text-end mr-3">
+          <hr className="border-t border-gray-400 my-4" />
+          <div className="flex flex-col lg:flex-row my-4 p-4 space-y-4 lg:space-y-0 lg:space-x-4">
+            <div className="flex flex-col text-end">
               <label
                 htmlFor="categoryName"
                 className="block text-md font-bold text-gray-800 mb-1"
               >
                 Nama Tipe Pelanggan:
               </label>
-
               <p className="text-sm text-gray-500">
-                Tipe Pelanggan, untuk memudahkan pengguna dalam mencari informasi pelanggan
+                Tipe Pelanggan, untuk memudahkan pengguna dalam mencari
+                informasi pelanggan
               </p>
             </div>
             <input
@@ -135,20 +132,15 @@ function CustomerType() {
               value={newType}
               onChange={(e) => setNewType(e.target.value)}
               placeholder="Nama Tipe Pelanggan"
-              className="p-2 border border-gray-300 rounded-lg mb-2"
+              className="p-2 border border-gray-300 rounded-lg"
             />
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg w-1/2">
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-3">Tipe Pelanggan List</h2>
-          </div>
-
-          <hr className="border-t border-gray-400 w-full" />
-
-
-          <div className="space-y-7 my-6 p-4">
+        <div className="bg-white rounded-lg shadow-lg w-full lg:w-1/2 p-4">
+          <h2 className="text-xl font-bold mb-3 pb-3">Tipe Pelanggan List</h2>
+          <hr className="border-t border-gray-400 my-4" />
+          <div className="space-y-4">
             {customerTypes.map((type) => (
               <div
                 key={type._id}
@@ -156,7 +148,10 @@ function CustomerType() {
               >
                 <div>{type.name}</div>
                 <button
-                  onClick={() => { setDeleteTypeId(type._id); setShowDeleteModal(true); }}
+                  onClick={() => {
+                    setDeleteTypeId(type._id);
+                    setShowDeleteModal(true);
+                  }}
                   className="text-red-600 font-semibold text-lg hover:text-red-800 transition-colors"
                 >
                   Delete
@@ -169,21 +164,34 @@ function CustomerType() {
 
       <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin menambah Tipe Pelanggan?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin menambah Tipe Pelanggan?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowAddModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleAddCustomerType}>Iya</Button>
+          <Button color="failure" onClick={() => setShowAddModal(false)}>
+            Batal
+          </Button>
+          <Button color="success" onClick={handleAddCustomerType}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
 
       <Modal show={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin menghapus Tipe Pelanggan? Semua Pelanggan yang memiliki tipe pelanggan ini akan terhapus!</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin menghapus Tipe Pelanggan? Semua Pelanggan yang memiliki
+            tipe pelanggan ini akan terhapus!
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowDeleteModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmDelete}>Iya</Button>
+          <Button color="failure" onClick={() => setShowDeleteModal(false)}>
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmDelete}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </>

@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import CustomerNavigation from "../CustomerNavigation";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function addCustomers() {
   const [customerData, setCustomerData] = useState({
@@ -102,7 +102,7 @@ function addCustomers() {
     const decoded = jwtDecode(token);
     const warehouseId = decoded.warehouse;
 
-    let typeId = isNewType ? null : customerData.customerType; 
+    let typeId = isNewType ? null : customerData.customerType;
 
     if (isNewType && newTypeName.trim()) {
       try {
@@ -112,14 +112,13 @@ function addCustomers() {
           { headers: { Authorization: `Bearer ${token}` } },
         );
         setCustomerTypes((prev) => [...prev, typeResponse.data]);
-        typeId = typeResponse.data._id; 
+        typeId = typeResponse.data._id;
         setNewTypeName("");
         setIsNewType(false);
         setCustomerData((prevData) => ({
           ...prevData,
           customerType: typeId,
         }));
-
       } catch (error) {
         alert(
           "Gagal menambahkan tipe pelanggan baru, periksa data yang dimasukkan!",
@@ -134,14 +133,14 @@ function addCustomers() {
 
     const finalCustomerData = {
       ...customerData,
-      customerType: typeId || customerData.customerType, 
+      customerType: typeId || customerData.customerType,
       warehouse: warehouseId,
     };
 
     // mengirim data terbaru dengan typeId
     try {
       await axios.post(
-        "http://localhost:5000/api/customers",
+        "https://inventory-management-api.vercel.app/api/customers",
         finalCustomerData,
         {
           headers: {
@@ -162,7 +161,6 @@ function addCustomers() {
     }
   };
 
-
   const resetCustomerData = () => {
     setCustomerData({
       name: "",
@@ -180,21 +178,23 @@ function addCustomers() {
 
   const handleTypeChange = (e) => {
     const selectedValue = e.target.value;
-  setIsNewType(selectedValue === "new");
-  if (selectedValue === "new") {
-    setCustomerData(prevData => ({
-      ...prevData,
-      customerType: ''
-    }));
-  } else {
-    // apabila tipe pelanggannya ada, maka cari namanya
-    const typeName = customerTypes.find(type => type._id === selectedValue)?.name;
-    setCustomerData(prevData => ({
-      ...prevData,
-      customerType: selectedValue,
-      customerTypeName: typeName
-    }));
-  }
+    setIsNewType(selectedValue === "new");
+    if (selectedValue === "new") {
+      setCustomerData((prevData) => ({
+        ...prevData,
+        customerType: "",
+      }));
+    } else {
+      // apabila tipe pelanggannya ada, maka cari namanya
+      const typeName = customerTypes.find(
+        (type) => type._id === selectedValue,
+      )?.name;
+      setCustomerData((prevData) => ({
+        ...prevData,
+        customerType: selectedValue,
+        customerTypeName: typeName,
+      }));
+    }
   };
 
   return (
@@ -202,7 +202,10 @@ function addCustomers() {
       <CustomerNavigation />
       <div className="mt-4">
         <form
-          onSubmit={(e) => { e.preventDefault(); setShowAddModal(true); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setShowAddModal(true);
+          }}
           className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl"
         >
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -213,14 +216,12 @@ function addCustomers() {
             </div>
             <div className="md:col-span-1 text-right">
               <Link to={"/customer"}>
-              <button
-                className=" bg-white border-2 hover:bg-gray-100 text-black py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-              >
-                Batal
-              </button>
+                <button className=" bg-white border-2 hover:bg-gray-100 text-black py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                  Batal
+                </button>
               </Link>
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
@@ -238,7 +239,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -256,7 +257,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="phone"
                 className="block text-sm font-medium text-gray-700"
@@ -273,7 +274,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="street"
                 className="block text-sm font-medium text-gray-700"
@@ -291,7 +292,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="city"
                 className="block text-sm font-medium text-gray-700"
@@ -309,7 +310,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="state"
                 className="block text-sm font-medium text-gray-700"
@@ -327,7 +328,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-1 form-group">
+            <div className="md:col-span-1 form-group mb-4 md:mb-0">
               <label
                 htmlFor="zipCode"
                 className="block text-sm font-medium text-gray-700"
@@ -345,7 +346,7 @@ function addCustomers() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="md:col-span-2 form-group">
+            <div className="md:col-span-2 form-group mb-4 md:mb-0">
               <label
                 htmlFor="customerType"
                 className="block text-sm font-medium text-gray-700"
@@ -382,26 +383,31 @@ function addCustomers() {
               )}
             </div>
           </div>
-          <div className="md:col-span-1 text-right mt-5">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-              >
-                Simpan
-              </button>
-            </div>
+          <div className="md:col-span-1 text-right mt-5 mb-4 md:mb-0">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+            >
+              Simpan
+            </button>
+          </div>
         </form>
       </div>
       <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin menambah Pelanggan?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin menambah Pelanggan?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowAddModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmAdd}>Iya</Button>
+          <Button color="failure" onClick={() => setShowAddModal(false)}>
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmAdd}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
-
     </>
   );
 }

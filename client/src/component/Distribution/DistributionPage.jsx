@@ -57,11 +57,16 @@ function DistributionPage() {
     if (distributionToDelete) {
       try {
         const token = Cookies.get("Token");
-        await axios.delete(`https://inventory-management-api.vercel.app/api/distribution/${distributionToDelete}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.delete(
+          `https://inventory-management-api.vercel.app/api/distribution/${distributionToDelete}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         setDistributions(
-          distributions.filter((distribution) => distribution._id !== distributionToDelete),
+          distributions.filter(
+            (distribution) => distribution._id !== distributionToDelete,
+          ),
         );
         setShowConfirmationModal(false);
       } catch (error) {

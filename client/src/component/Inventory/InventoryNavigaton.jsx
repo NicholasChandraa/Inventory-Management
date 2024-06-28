@@ -18,10 +18,10 @@ function InventoryNavigation() {
     ) {
       setActiveTab("stokKeluar");
     } else if (
-        location.pathname.includes("/inventory/inventoryPage/InventoryOutStock/*")
-      ) {
-        setActiveTab("pergerakanStok");
-      } else {
+      location.pathname.includes("/inventory/inventoryPage/InventoryOutStock/*")
+    ) {
+      setActiveTab("pergerakanStok");
+    } else {
       setActiveTab("");
     }
   }, [location.pathname]);

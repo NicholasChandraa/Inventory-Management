@@ -128,10 +128,10 @@ function ProductCategory() {
   return (
     <>
       <ProductNavigation />
-      <div className="flex p-6">
-        <div className="shadow-md w-1/2 rounded flex flex-col h-[290px]">
+      <div className="flex flex-col lg:flex-row p-4 md:p-6">
+        <div className="shadow-md w-full lg:w-1/2 rounded flex flex-col h-auto lg:h-[290px] mb-6 lg:mb-0">
           <div className="flex justify-between pt-6 px-4 mb-5">
-            <h2 className="text-xl font-bold text-gray-800">Tambah Kategori</h2>{" "}
+            <h2 className="text-xl font-bold text-gray-800">Tambah Kategori</h2>
             <button
               className="text-white font-bold py-2 px-4 rounded bg-[#67C23A] hover:bg-[#59B32D] active:bg-[#397B18]"
               onClick={handleAddClick}
@@ -142,10 +142,10 @@ function ProductCategory() {
 
           <hr className="border-t border-gray-400 w-full" />
 
-          <div className="flex mt-10 p-4 w-full items-center">
-            <div className="text-end pr-3">
+          <div className="flex flex-col lg:flex-row mt-6 lg:mt-10 p-4 w-full items-center">
+            <div className="text-start lg:text-end pr-0 lg:pr-3 w-full lg:w-auto mb-4 lg:mb-0">
               <h3 className="text-base font-bold text-gray-700 mb-2">
-                Nama Kategori:{" "}
+                Nama Kategori:
               </h3>
               <p className="text-sm text-gray-700">
                 Kategori Produk, untuk memudahkan pengguna dalam mencari produk
@@ -159,7 +159,7 @@ function ProductCategory() {
             />
           </div>
         </div>
-        <div className="shadow-md rounded ml-6 w-1/2">
+        <div className="shadow-md rounded w-full lg:w-1/2 lg:ml-6">
           <h2 className="font-bold text-xl py-7 px-4">Kategori List</h2>
           <hr className="border-t border-gray-400 w-full" />
           <div className="my-8">
@@ -187,7 +187,7 @@ function ProductCategory() {
           className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
           id="my-modal"
         >
-          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+          <div className="relative top-20 mx-auto p-5 border w-80 md:w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
               <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
                 <svg
@@ -250,13 +250,20 @@ function ProductCategory() {
         </Modal>
       )}
 
-{showUsedCategoryModal && (
-        <Modal show={showUsedCategoryModal} onClose={handleCloseUsedCategoryModal}>
+      {showUsedCategoryModal && (
+        <Modal
+          show={showUsedCategoryModal}
+          onClose={handleCloseUsedCategoryModal}
+        >
           <ModalBody>
-            <p className="text-lg font-semibold text-center">Terdapat Produk yang memiliki kategori ini! (Tidak dapat dihapus)</p>
+            <p className="text-lg font-semibold text-center">
+              Terdapat Produk yang memiliki kategori ini! (Tidak dapat dihapus)
+            </p>
           </ModalBody>
           <ModalFooter className="justify-center">
-            <Button color="success" onClick={handleCloseUsedCategoryModal}>OK</Button>
+            <Button color="success" onClick={handleCloseUsedCategoryModal}>
+              OK
+            </Button>
           </ModalFooter>
         </Modal>
       )}

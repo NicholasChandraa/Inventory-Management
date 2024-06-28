@@ -11,6 +11,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 function Dashboard() {
@@ -170,83 +171,86 @@ function Dashboard() {
   ];
 
   return (
-    <div className=" m-8 p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-4">DASHBOARD</h2>
-      <div className="border-b-4 mb-8"></div>
-      <div className="font-medium text-xl mb-2">Summary</div>
-      <div className="border-b-2 mb-8"></div>
-      <div className="flex justify-between font-semibold gap-8 mb-5">
+    <div className="m-4 md:m-8 p-4 md:p-8 bg-white shadow-lg rounded-lg">
+      <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
+        DASHBOARD
+      </h2>
+      <div className="border-b-4 mb-4 md:mb-8"></div>
+      <div className="font-medium text-lg md:text-xl mb-2">Summary</div>
+      <div className="border-b-2 mb-4 md:mb-8"></div>
+      <div className="flex flex-col md:flex-row justify-between font-semibold gap-4 md:gap-8 mb-5">
         <div className="shadow rounded-md w-full h-20 p-4">
           <p>Pendapatan</p>
           <span className="text-green-600">Rp. {revenue.toLocaleString()}</span>
         </div>
-        <div className="shadow rounded-md w-full p-4">
+        <div className="shadow rounded-md w-full h-20 p-4">
           <p>Pengeluaran</p>
           <span className="text-red-600">Rp. {expenses.toLocaleString()}</span>
         </div>
-        <div className="shadow rounded-md w-full p-4">
+        <div className="shadow rounded-md w-full h-20 p-4">
           <p>Keuntungan</p>
           <span className="text-blue-600">Rp. {profit.toLocaleString()}</span>
         </div>
       </div>
 
-      <div className="my-6 shadow border rounded-lg">
+      <div className="my-6 shadow border rounded-lg p-4">
         <h3 className="my-6 text-lg font-medium text-center">
           Statistik Profit Penjualan dan Pengeluaran Distribusi Per Hari Ini
         </h3>
-        <LineChart
-          width={1200}
-          height={300}
-          data={chartDataAndDate}
-          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-          className="p-2"
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip
-            formatter={(value, name) => [`Rp. ${value.toLocaleString()}`, name]}
-          />
-          <Legend
-            formatter={(value) => {
-              if (value === "totalSales") return "Penjualan Total";
-              if (value === "totalExpenses") return "Total Pengeluaran";
-              if (value === "profit") return "Keuntungan";
-              return value;
-            }}
-          />
-          <Line
-            type="monotone"
-            dataKey="totalSales"
-            stroke="#82ca9d"
-            activeDot={{ r: 8 }}
-            name="Total Pendapatan Penjualan"
-          />
-          <Line
-            type="monotone"
-            dataKey="totalExpenses"
-            stroke="#8884d8"
-            name="Total Pengeluaran Distribusi"
-          />
-          <Line
-            type="monotone"
-            dataKey="profit"
-            stroke="#ffc658"
-            name="Keuntungan"
-          />
-        </LineChart>
-
-        <div className="flex justify-between">
-          <h3 className="mx-10 mb-10 text-red-600 font-medium">
+        <div className="w-full">
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart
+              data={chartDataAndDate}
+              margin={{ top: 5, right: 20, bottom: 5, left: 40 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip
+                formatter={(value, name) => [
+                  `Rp. ${value.toLocaleString()}`,
+                  name,
+                ]}
+              />
+              <Legend
+                formatter={(value) => {
+                  if (value === "totalSales") return "Penjualan Total";
+                  if (value === "totalExpenses") return "Total Pengeluaran";
+                  if (value === "profit") return "Keuntungan";
+                  return value;
+                }}
+              />
+              <Line
+                type="monotone"
+                dataKey="totalSales"
+                stroke="#82ca9d"
+                activeDot={{ r: 8 }}
+                name="Total Pendapatan Penjualan"
+              />
+              <Line
+                type="monotone"
+                dataKey="totalExpenses"
+                stroke="#8884d8"
+                name="Total Pengeluaran Distribusi"
+              />
+              <Line
+                type="monotone"
+                dataKey="profit"
+                stroke="#ffc658"
+                name="Keuntungan"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between">
+          <h3 className="mx-4 md:mx-10 mb-10 text-red-600 font-medium">
             Penjualan Profit :
             <span className="font-bold"> {revenue.toLocaleString()}</span>
           </h3>
-
-          <h3 className="mx-10 mb-10 font-medium">
+          <h3 className="mx-4 md:mx-10 mb-10 font-medium">
             Total :<span className="font-bold"> {profit.toLocaleString()}</span>
           </h3>
-
-          <h3 className="mx-10 mb-10 text-blue-600 font-medium">
+          <h3 className="mx-4 md:mx-10 mb-10 text-blue-600 font-medium">
             Pengeluaran Distribusi :
             <span className="font-bold"> {expenses.toLocaleString()}</span>
           </h3>
@@ -254,124 +258,132 @@ function Dashboard() {
       </div>
 
       <div className="flex flex-col">
-        <div className="my-6 shadow border rounded-lg">
+        <div className="my-6 shadow border rounded-lg p-4">
           <h3 className="my-6 text-lg font-medium text-center">
             Statistik Pendapatan dan Pengeluaran
           </h3>
-          <LineChart
-            width={1200}
-            height={300}
-            data={chartData}
-            className=" p-2"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip
-              formatter={(value, name) => [
-                `Rp. ${value.toLocaleString()}`,
-                name,
-              ]}
-            />
-            <Legend />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-          </LineChart>
-
-          <h3 className="mx-10 mb-10 font-medium text-end">
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={chartData}
+                margin={{ top: 5, right: 20, bottom: 5, left: 40 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip
+                  formatter={(value, name) => [
+                    `Rp. ${value.toLocaleString()}`,
+                    name,
+                  ]}
+                />
+                <Legend />
+                <Line type="monotone" dataKey="value" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <h3 className="mx-4 md:mx-10 mb-10 font-medium text-end">
             Keuntungan :
             <span className="font-bold"> {profit.toLocaleString()}</span>
           </h3>
         </div>
 
-        <div className="my-6 shadow border rounded-lg">
+        <div className="my-6 shadow border rounded-lg p-4">
           <h3 className="my-6 text-lg font-medium text-center">
             Statistik Harga Awal vs Harga Jual
           </h3>
-          <LineChart
-            width={1200}
-            height={300}
-            data={priceComparison}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            className="p-2 mb-4"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip
-              formatter={(value, name) => [
-                `Rp. ${value.toLocaleString()}`,
-                name,
-              ]}
-            />
-            <Legend />
-            <Line type="monotone" dataKey="amount" stroke="#8884d8" />
-          </LineChart>
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={priceComparison}
+                margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip
+                  formatter={(value, name) => [
+                    `Rp. ${value.toLocaleString()}`,
+                    name,
+                  ]}
+                />
+                <Legend />
+                <Line type="monotone" dataKey="amount" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        <div className="my-6 shadow border rounded-lg">
+        <div className="my-6 shadow border rounded-lg p-4">
           <h3 className="my-6 text-lg font-medium text-center">
             Data Penjualan Produk
           </h3>
-          <LineChart
-            width={1200}
-            height={300}
-            data={salesData}
-            className="p-2 mb-6"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip
-              formatter={(value, name) => [
-                `Rp. ${value.toLocaleString()}`,
-                name,
-              ]}
-            />
-            <Legend
-              formatter={(value) =>
-                value === "totalAmount" ? "Total Penjualan Produk" : value
-              }
-            />
-            <Line
-              type="monotone"
-              dataKey="totalAmount"
-              stroke="#8884d8"
-              name="Total Penjualan Produk"
-            />
-          </LineChart>
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={salesData}
+                margin={{ top: 5, right: 20, bottom: 5, left: 40 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip
+                  formatter={(value, name) => [
+                    `Rp. ${value.toLocaleString()}`,
+                    name,
+                  ]}
+                />
+                <Legend
+                  formatter={(value) =>
+                    value === "totalAmount" ? "Total Penjualan Produk" : value
+                  }
+                />
+                <Line
+                  type="monotone"
+                  dataKey="totalAmount"
+                  stroke="#8884d8"
+                  name="Total Penjualan Produk"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        <div className="mt-6 shadow border rounded-lg">
+        <div className="mt-6 shadow border rounded-lg p-4">
           <h3 className="my-6 text-lg font-medium text-center">
             Data Distribusi
           </h3>
-          <LineChart
-            width={1200}
-            height={300}
-            data={distributionData}
-            className="p-2 mb-6"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip
-              formatter={(value, name) => [
-                `Rp. ${value.toLocaleString()}`,
-                name,
-              ]}
-            />
-            <Legend
-              formatter={(value) =>
-                value === "totalCost" ? "Total Pengeluaran Distribusi" : value
-              }
-            />
-            <Line
-              type="monotone"
-              dataKey="totalCost"
-              stroke="#82ca9d"
-              name="Total Pengeluaran Distribusi"
-            />
-          </LineChart>
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={distributionData}
+                margin={{ top: 5, right: 20, bottom: 5, left: 40 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip
+                  formatter={(value, name) => [
+                    `Rp. ${value.toLocaleString()}`,
+                    name,
+                  ]}
+                />
+                <Legend
+                  formatter={(value) =>
+                    value === "totalCost"
+                      ? "Total Pengeluaran Distribusi"
+                      : value
+                  }
+                />
+                <Line
+                  type="monotone"
+                  dataKey="totalCost"
+                  stroke="#82ca9d"
+                  name="Total Pengeluaran Distribusi"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>

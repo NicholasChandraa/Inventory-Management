@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import DistributionNavigation from "./DistributionNavigation";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function AddDistribution() {
   const [form, setForm] = useState({
@@ -72,7 +72,6 @@ function AddDistribution() {
       }
 
       navigate("/distribution");
-
     } catch (error) {
       console.error("There was an error submitting the form:", error);
     }
@@ -91,13 +90,11 @@ function AddDistribution() {
   return (
     <>
       <DistributionNavigation />
-      <div className="container w-1/2 shadow-md mx-auto mt-8 m-6 p-6">
-        <div className="flex justify-between">
-          <div>
-            <h2 className="text-xl font-semibold mt-2 mb-4">
-              Tambah Data Distribusi
-            </h2>
-          </div>
+      <div className="container mx-auto mt-8 p-6 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-md bg-white rounded-lg">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-semibold mt-2 mb-4">
+            Tambah Data Distribusi
+          </h2>
           <Link to={"/distribution"}>
             <button className="bg-white border-2 hover:bg-gray-100 rounded-lg px-3 py-1 text-lg">
               Cancel
@@ -217,13 +214,25 @@ function AddDistribution() {
         </form>
       </div>
 
-      <Modal show={showConfirmationModal} onClose={() => setShowConfirmationModal(false)}> {/* Modifikasi */}
+      <Modal
+        show={showConfirmationModal}
+        onClose={() => setShowConfirmationModal(false)}
+      >
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin menambah data distribusi?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin menambah data distribusi?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowConfirmationModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleConfirmSubmit}>Iya</Button>
+          <Button
+            color="failure"
+            onClick={() => setShowConfirmationModal(false)}
+          >
+            Batal
+          </Button>
+          <Button color="success" onClick={handleConfirmSubmit}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </>

@@ -6,7 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { Modal, ModalBody, ModalFooter, Button } from 'flowbite-react';
+import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
 function CustomerPage() {
   const [customers, setCustomers] = useState([]);
@@ -15,7 +15,7 @@ function CustomerPage() {
   const [typeFilter, setTypeFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [customerTypes, setCustomerTypes] = useState([]);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [customerIdToDelete, setCustomerIdToDelete] = useState(null);
 
   const navigate = useNavigate();
@@ -39,18 +39,24 @@ function CustomerPage() {
 
   async function fetchCustomers(warehouseId, token) {
     try {
-      const result = await axios.get("https://inventory-management-api.vercel.app/api/customers/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const result = await axios.get(
+        "https://inventory-management-api.vercel.app/api/customers/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { warehouse: warehouseId },
         },
-        params: { warehouse: warehouseId },
-      });
+      );
       setCustomers(result.data);
 
       const filtered = result.data.filter((customer) => {
         return (
           customer.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-          (customer.customerType?.name?.toLowerCase().includes(typeFilter.toLowerCase()) || false) &&
+          (customer.customerType?.name
+            ?.toLowerCase()
+            .includes(typeFilter.toLowerCase()) ||
+            false) &&
           (!dateFilter ||
             new Date(customer.createdAt).toDateString() ===
               new Date(dateFilter).toDateString())
@@ -73,7 +79,7 @@ function CustomerPage() {
           },
         },
       );
-      
+
       setCustomerTypes(result.data);
     } catch (error) {
       console.error("Error fetch customer types:", error);
@@ -110,7 +116,10 @@ function CustomerPage() {
     const filtered = customers.filter((customer) => {
       return (
         customer.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-        (customer.customerType?.name?.toLowerCase().includes(typeFilter.toLowerCase()) || false) &&
+        (customer.customerType?.name
+          ?.toLowerCase()
+          .includes(typeFilter.toLowerCase()) ||
+          false) &&
         (!dateFilter ||
           new Date(customer.createdAt).toLocaleDateString() ===
             new Date(dateFilter).toLocaleDateString())
@@ -129,12 +138,17 @@ function CustomerPage() {
     if (!token) return;
 
     try {
-      await axios.delete(`https://inventory-management-api.vercel.app/api/customers/${customerIdToDelete}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.delete(
+        `https://inventory-management-api.vercel.app/api/customers/${customerIdToDelete}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
-      setCustomers(customers.filter((customer) => customer._id !== customerIdToDelete));
+      );
+      setCustomers(
+        customers.filter((customer) => customer._id !== customerIdToDelete),
+      );
       setShowDeleteModal(false);
       setCustomerIdToDelete(null);
     } catch (error) {
@@ -190,13 +204,27 @@ function CustomerPage() {
           <table className="w-full">
             <thead className="text-white bg-black">
               <tr>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider rounded-tl-md">Nama</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">ID Pelanggan</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">Email</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">Telepon</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">Tipe</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">Tanggal Daftar</th>
-                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">Hapus</th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider rounded-tl-md">
+                  Nama
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  ID Pelanggan
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  Email
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  Telepon
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  Tipe
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  Tanggal Daftar
+                </th>
+                <th className="px-5 py-3 bg-gray-800 text-start text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                  Hapus
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-300">
@@ -208,7 +236,7 @@ function CustomerPage() {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => handleCustomerClick(customer._id)}
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-blue-500 hover:text-blue-700 text-start"
                     >
                       {customer.name}
                     </button>
@@ -216,7 +244,11 @@ function CustomerPage() {
                   <td className="px-6 py-4">{formatId(customer._id)}</td>
                   <td className="px-6 py-4">{customer.email}</td>
                   <td className="px-6 py-4">{customer.phone}</td>
-                  <td className="px-6 py-4">{customer.customerType ? customer.customerType.name : "Tipe Customer Tidak Ditemukan"}</td>
+                  <td className="px-6 py-4">
+                    {customer.customerType
+                      ? customer.customerType.name
+                      : "Tipe Customer Tidak Ditemukan"}
+                  </td>
                   <td className="px-6 py-4">
                     {formatDate(customer.createdAt)}
                   </td>
@@ -242,11 +274,17 @@ function CustomerPage() {
 
       <Modal show={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
         <ModalBody>
-          <p className="text-lg font-semibold text-center">Yakin ingin menghapus data Pelanggan?</p>
+          <p className="text-lg font-semibold text-center">
+            Yakin ingin menghapus data Pelanggan?
+          </p>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="failure" onClick={() => setShowDeleteModal(false)}>Batal</Button>
-          <Button color="success" onClick={handleDeleteCustomer}>Iya</Button>
+          <Button color="failure" onClick={() => setShowDeleteModal(false)}>
+            Batal
+          </Button>
+          <Button color="success" onClick={handleDeleteCustomer}>
+            Iya
+          </Button>
         </ModalFooter>
       </Modal>
     </>

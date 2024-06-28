@@ -1,21 +1,21 @@
 /* eslint-disable */
-import React from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import React from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 function FilterBar({ onChange, initialFilters }) {
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      onChange({ ...initialFilters, [name]: value });
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    onChange({ ...initialFilters, [name]: value });
+  };
 
-    const handleClearFilters = () => {
-      onChange({ date: '', statusIn: '', updatedBy: ''});
-    };
-  
-    return (
-        <div className='ml-6 mt-6 mr-6'>
-        <form className="p-4 rounded-md shadow flex items-center space-x-4">
+  const handleClearFilters = () => {
+    onChange({ date: "", statusIn: "", updatedBy: "" });
+  };
+
+  return (
+    <div className="ml-4 md:ml-6 mt-4 md:mt-6 mr-4 md:mr-6">
+      <form className="p-4 rounded-md shadow flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
         <input
           type="date"
           name="date"
@@ -50,8 +50,8 @@ function FilterBar({ onChange, initialFilters }) {
           Bersihkan Filter
         </button>
       </form>
-      </div>
-    );
-  }
-  
-  export default FilterBar;
+    </div>
+  );
+}
+
+export default FilterBar;

@@ -77,11 +77,14 @@ const AddProduct = () => {
 
   const fetchData = async (token) => {
     try {
-      const response = await axios.get("https://inventory-management-api.vercel.app/api/product", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.get(
+        "https://inventory-management-api.vercel.app/api/product",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setProduct(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);

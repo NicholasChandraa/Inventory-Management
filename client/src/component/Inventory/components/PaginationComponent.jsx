@@ -26,28 +26,30 @@ const PaginationComponent = ({
   const [goToInput, setGoToInput] = useState(currentPage);
 
   return (
-    <div className="flex items-center space-x-2 font-medium">
-      <button
-        onClick={goToPrevPage}
-        disabled={currentPage === 1}
-        className="px-2 py-2 text-gray-900"
-      >
-        {"<"}
-      </button>
-      <span className="px-2 py-2 ">{currentPage}</span>
-      <button
-        onClick={goToNextPage}
-        disabled={currentPage === totalPages}
-        className="px-4 py-2 text-gray-900"
-      >
-        {">"}
-      </button>
+    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 font-medium">
+      <div>
+        <button
+          onClick={goToPrevPage}
+          disabled={currentPage === 1}
+          className="px-2 py-2 text-gray-900"
+        >
+          {"<"}
+        </button>
+        <span className="px-2 py-2">{currentPage}</span>
+        <button
+          onClick={goToNextPage}
+          disabled={currentPage === totalPages}
+          className="px-2 py-2 text-gray-900"
+        >
+          {">"}
+        </button>
+      </div>
       <input
         type="number"
         value={goToInput}
         onChange={(e) => setGoToInput(e.target.value)}
         onKeyPress={(e) => e.key === "Enter" && goToPage(Number(goToInput))}
-        className="px-2 py-2 w-40 border rounded-lg shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        className="px-2 py-2 w-20 md:w-40 border rounded-lg shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
       />
       <button
         onClick={() => goToPage(Number(goToInput))}

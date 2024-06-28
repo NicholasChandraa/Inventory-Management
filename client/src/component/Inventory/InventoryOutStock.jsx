@@ -10,7 +10,6 @@ import FilterBarOut from "./components/FilterBarOut";
 import PaginationComponent from "./components/PaginationComponent";
 import { Modal, ModalBody, ModalFooter, Button } from "flowbite-react";
 
-
 const InventoryOutStock = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mergeInventorySales, setMergeInventorySales] = useState([]);
@@ -27,7 +26,7 @@ const InventoryOutStock = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   // state untuk edit catatan dan status
-  const [editItem, setEditItem] = useState(null); 
+  const [editItem, setEditItem] = useState(null);
   const [editedNote, setEditedNote] = useState("");
   const [editedStatus, setEditedStatus] = useState("");
 
@@ -131,10 +130,13 @@ const InventoryOutStock = () => {
 
   const fetchSales = async (token, warehouseId) => {
     try {
-      const response = await axios.get("https://inventory-management-api.vercel.app/api/sales", {
-        headers: { Authorization: `Bearer ${token}` },
-        params: { warehouse: warehouseId },
-      });
+      const response = await axios.get(
+        "https://inventory-management-api.vercel.app/api/sales",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          params: { warehouse: warehouseId },
+        },
+      );
 
       return response.data;
     } catch (error) {
@@ -204,15 +206,15 @@ const InventoryOutStock = () => {
     );
   };
 
-  const confirmEdit = (item) => { 
-    setEditItem(item); 
-    setShowEditModal(true); 
+  const confirmEdit = (item) => {
+    setEditItem(item);
+    setShowEditModal(true);
   };
 
-  const handleSave = async () => { 
-    if (!editItem) return; 
+  const handleSave = async () => {
+    if (!editItem) return;
 
-    const uniqueKey = `${editItem.sale._id}-${editItem.stockItem._id}`; 
+    const uniqueKey = `${editItem.sale._id}-${editItem.stockItem._id}`;
     const editState = editStates.find((state) => state.uniqueKey === uniqueKey);
     const token = Cookies.get("Token");
     const saleId = uniqueKey.split("-")[0];
@@ -248,7 +250,7 @@ const InventoryOutStock = () => {
       setError(error.response?.data?.message || "Gagal upadte stok keluar");
     }
 
-    setEditItem(null); 
+    setEditItem(null);
   };
 
   const handleCancel = (uniqueKey) => {
@@ -328,10 +330,10 @@ const InventoryOutStock = () => {
                       {data.sale.orderNumber}
                     </td>
                     <td className="px-5 py-2 text-sm text-gray-900">
-                    {data.sale.items.map(item => item.product.name)}
+                      {data.sale.items.map((item) => item.product.name)}
                     </td>
                     <td className="px-5 py-2 text-sm text-gray-900">
-                    {data.sale.items.map(item => item.quantity)}
+                      {data.sale.items.map((item) => item.quantity)}
                     </td>
                     <td className="px-5 py-2 text-sm text-gray-900">
                       {data.sale.customer.name}
@@ -375,7 +377,7 @@ const InventoryOutStock = () => {
                       {editState.isEditing ? (
                         <>
                           <button
-                            onClick={() => confirmEdit(data)} 
+                            onClick={() => confirmEdit(data)}
                             className="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm w-20 px-4 py-2 mb-2"
                           >
                             Save
